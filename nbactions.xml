@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+        <actionName>run.single.main</actionName>
+        <packagings>
+            <packaging>*</packaging>
+        </packagings>
+        <goals>
+            <goal>process-classes</goal>
+            <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
+            
+        </goals>
+        <properties>
+             <!--<exec.args>-Xms512m -Xmx512m -javaagent:C:\Docume~1\hope\Applic~1\NetBeans\${netBeansVersion}\jrebel\lib\jrebel32.dll -Xbootclasspath/p:C:/Docume~1/hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/${alpn-boot-version}/alpn-boot-${alpn-boot-version}.jar -classpath %classpath ${packageClassName}</exec.args> - ->
+            <exec.args>-Xms1024m -Xmx1024m -javaagent:C:\Docume~1\hope\Applic~1\NetBeans\${netBeansVersion}\jrebel\jrebel.jar -Xbootclasspath/p:C:/Docume~1/hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/${alpn-boot-version}/alpn-boot-${alpn-boot-version}.jar -classpath %classpath ${packageClassName}</exec.args>
+            <exec.args>-Xms1024m -Xmx1024m -agentpath:C:\Docume~1\hope\Applic~1\NetBeans\${netBeansVersion}\jrebel\lib\jrebel32.dll -Xbootclasspath/p:C:/Docume~1/hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/${alpn-boot-version}/alpn-boot-${alpn-boot-version}.jar -classpath %classpath ${packageClassName}</exec.args>-->
+            <!--<exec.args>-Xms1024m -Xmx1024m -agentpath:C:\Docume~1\hope\Applic~1\NetBeans\${netBeansVersion}\jrebel\lib\jrebel32.dll -Xbootclasspath/p:C:/Docume~1/hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/${alpn-boot-version}/alpn-boot-${alpn-boot-version}.jar -classpath %classpath ${packageClassName}</exec.args>-->
+            <exec.args>-Xms1024m -Xmx1024m -agentpath:E:\PROGRA~2\NETBEA~1.1\java2\griffin\lib\jrebel64.dll -Xbootclasspath/p:C:/Users/Hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/${alpn-boot-version}/alpn-boot-${alpn-boot-version}.jar -classpath %classpath ${packageClassName}</exec.args>
+            <exec.executable>java</exec.executable>
+            <exec.classpathScope>${classPathScope}</exec.classpathScope>
+        
+            
+        </properties>
+
+    </action>
+</actions>
