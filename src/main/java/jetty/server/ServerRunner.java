@@ -2,15 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hopecee.tublex.jetty.server;
+package jetty.server;
 
-import bitronix.tm.BitronixTransactionManager;
-import bitronix.tm.TransactionManagerServices;
+//import bitronix.tm.BitronixTransactionManager;
+//import bitronix.tm.TransactionManagerServices;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 /**
  *
  * @author hope
@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 public class ServerRunner extends JFrame {
     
     private static final long serialVersionUID = 8261022096695034L;
-	private static final Logger LOGGER = LogManager.getLogger(ServerRunner.class);
+	//private static final Logger LOGGER = LogManager.getLogger(ServerRunner.class);
 
 	private JButton btnStartStop;
 
@@ -39,7 +39,7 @@ public class ServerRunner extends JFrame {
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 			@Override
 			public void run() {
-                            checkBTMproperlyShotdown();
+                          //  checkBTMproperlyShotdown();
 		//		if(jettyServer.isStarted()) {
 					try {
 		//				jettyServer.stop();
@@ -51,6 +51,7 @@ public class ServerRunner extends JFrame {
 		setVisible(true);
 	}
        
+       /**
          private void checkBTMproperlyShotdown() {
         LOGGER.info("BitronixTransactionManager - Checking if properly shutdown");
         BitronixTransactionManager txm = TransactionManagerServices.getTransactionManager();
@@ -63,5 +64,5 @@ public class ServerRunner extends JFrame {
 
         }
     }
-         
+    */     
 }

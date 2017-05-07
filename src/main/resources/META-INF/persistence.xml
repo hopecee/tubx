@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="PU" transaction-type="JTA">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>jdbc/pooledDataSourceBTM</jta-data-source>
+        <class>com.hopecee.tushop.jpa.model.IdentityObject</class>
+        <class>com.hopecee.tushop.jpa.model.IdentityObjectAttribute</class>
+        <class>com.hopecee.tushop.jpa.model.IdentityObjectCredential</class>
+        <class>com.hopecee.tushop.jpa.model.IdentityObjectCredentialType</class>
+        <class>com.hopecee.tushop.jpa.model.IdentityObjectRelationship</class>
+        <class>com.hopecee.tushop.jpa.model.IdentityObjectRelationshipType</class>
+        <class>com.hopecee.tushop.jpa.model.IdentityObjectType</class>
+        <class>com.hopecee.tushop.jpa.model.IdentityRoleName</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.BitronixJtaPlatform"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.cache.use_query_cache" value="false"/>
+             
+            <!-- uncomment this line when you want to add new tables. -->
+            <!-- <property name="hibernate.hbm2ddl.auto" value="update"/> -->
+            <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>-->
+            <!-- Only format when you need to debug, because it slows things down -->
+            <property name="hibernate.format_sql" value="false"/>
+            <!-- since most database servers have slightly different versions of the 
+            SQL, Hibernate needs you to choose a dialect so it knows the subtleties of 
+            talking to that server -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+            <!--<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.TransactionManagerLookup"/>-->
+           
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="Neo4j_PU">
+        <class>com.hopecee.tushop.neo4j.jdo.model.Product</class>
+        <class>com.hopecee.tushop.neo4j.jdo.model.Inventory</class>
+        <class>com.hopecee.tushop.neo4j.jdo.model.User</class>
+        <class>com.hopecee.tushop.neo4j.jdo.model.UserFriendship</class>
+        <class>com.hopecee.tushop.neo4j.jdo.model.Country</class>
+        <class>com.hopecee.tushop.neo4j.jdo.model.AddressBook</class>
+        <class>com.hopecee.tushop.neo4j.jdo.model.Configuration</class>
+        <class>com.hopecee.tushop.neo4j.jdo.model.ConfigurationGroup</class>
+        <class>com.hopecee.tushop.neo4j.jdo.model.UserQuestion</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="javax.jdo.PersistenceManagerFactoryClass" value="org.datanucleus.api.jdo.JDOPersistenceManagerFactory"/>
+            <!--<property name="javax.jdo.option.ConnectionURL" value="neo4j:data/graph"/>-->
+            <property name="javax.jdo.option.ConnectionURL" value="neo4j:E:/proShopDir/data/graph"/>
+            
+            <property name="datanucleus.DetachAllOnCommit" value="true"/>
+            <property name="datanucleus.schema.autoCreateAll" value="true"/>
+            
+            <!--<property name="datanucleus.cache.level2.type" value="ehcache"/>
+            <property name="datanucleus.cache.level2.cacheName" value="myEntitycache"/>-->
+            <property name="javax.jdo.option.Optimistic" value="true"/>
+            
+            <!-- ==== TODO ALLOW UPDATE OF DATABASE ===== -->
+            <property name="datanucleus.ConnectionPropertiesFile" value="neo4j.properties"/>
+            
+            <!--
+            
+            
+            <property name="datanucleus.schema.autoCreateTables" value="true"/>
+            <property name="datanucleus.schema.autoCreateColumns" value="true"/>
+            <property name="datanucleus.schema.validateAll" value="false"/>
+                     
+                  <property name="datanucleus.schema.validateTables" value="false"/>
+                      <property name="datanucleus.schema.validateColumns" value="false"/>
+                      <property name="datanucleus.schema.validateConstraints" value="false"/>
+            -->
+           
+            
+        </properties>
+    </persistence-unit>
+</persistence>

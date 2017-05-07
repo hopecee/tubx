@@ -2,11 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hopecee.tublex.jetty.server;
+package jetty.server;
 
 import java.io.IOException;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
+import org.eclipse.jetty.util.thread.ThreadPool;
 import org.xml.sax.SAXException;
 
 /**
@@ -15,9 +16,8 @@ import org.xml.sax.SAXException;
  */
 public class JettyServer {
 
-    // The Server
     Server server = new Server();
-    //private AppContext appContext = new AppContext();
+    
     ManyConnectors manyConnectors = new ManyConnectors();
     
     public JettyServer() throws SAXException, IOException, Exception {
@@ -29,6 +29,18 @@ public class JettyServer {
         
     }
     
+        public JettyServer(ThreadPool threadPool) {
+        server = new Server(threadPool);
+    }
+
+    public JettyServer(Server server) {
+        this.server = server;
+    }
+
+    public Server getServer() {
+        return server;
+    }
+
     public void setHandler(ContextHandlerCollection contexts) {
        
         server.setHandler(contexts);

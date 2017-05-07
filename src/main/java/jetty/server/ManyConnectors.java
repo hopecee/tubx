@@ -2,11 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hopecee.tublex.jetty.server;
+package jetty.server;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.net.ssl.SSLEngine;
 import org.eclipse.jetty.alpn.ALPN;
 import org.eclipse.jetty.alpn.server.ALPNServerConnectionFactory;
 import org.eclipse.jetty.http2.HTTP2Cipher;
@@ -21,6 +28,7 @@ import org.eclipse.jetty.server.SecureRequestCustomizer;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.SslConnectionFactory;
+import org.eclipse.jetty.util.resource.ResourceCollection;
 //import org.eclipse.jetty.spdy.server.NPNServerConnectionFactory;
 //import org.eclipse.jetty.spdy.server.http.HTTPSPDYServerConnectionFactory;
 //import org.eclipse.jetty.spdy.server.http.ReferrerPushStrategy;
@@ -31,11 +39,14 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
  * @author hope
  */
 public class ManyConnectors {
-
+    
     private final String DEV_KEYSTORE_PATH = "src/main/resources/keystore";
-    //private final String PROD_KEYSTORE_PATH = "/webapp/keystore";
+    private final String PROD_KEYSTORE_PATH = "/webapp/keystore";
+    private final String PASS = "rising";
     private String keyStorePath;
-
+    
+    AppContext appContext = new AppContext();
+    
     public ManyConnectors() {
         ALPN.debug = true;
     }
@@ -66,27 +77,52 @@ public class ManyConnectors {
 
     //SSL Context Factory for HTTPS and HTTP/2
     public SslContextFactory getSslContextFactory() {
-        /**
-         * final String tempDirPath =
-         * System.getProperty("com.hopecee.jetty.main.TEMP_DIR_PATH"); try { if
-         * (null != appContext.getOperationalMode()) { switch
-         * (appContext.getOperationalMode()) { case PROD: { keyStorePath =
-         * tempDirPath + PROD_KEYSTORE_PATH; break; } case PROD_EXE: {
-         * keyStorePath = tempDirPath + PROD_KEYSTORE_PATH; break; } default:
-         * keyStorePath = DEV_KEYSTORE_PATH; break; } } } catch (IOException ex)
-         * { Logger.getLogger(ManyConnectors.class.getName()).log(Level.SEVERE,
-         * null, ex); }
-         */
-        keyStorePath = DEV_KEYSTORE_PATH;
-
+        final String TEMP_DIR_PATH = System.getProperty("com.hopecee.tublex.jetty.main.TEMP_DIR_PATH");
+        
+        try {
+            if (null != appContext.getOperationalMode()) {
+                switch (appContext.getOperationalMode()) {
+                    case PROD:
+                        keyStorePath = TEMP_DIR_PATH + PROD_KEYSTORE_PATH;
+                        break;
+                    case PROD_EXE:
+                        //keyStorePath = TEMP_DIR_PATH + PROD_KEYSTORE_PATH;
+                        break;
+                    case DEV:
+                        keyStorePath = DEV_KEYSTORE_PATH;
+                        break;
+                    default:
+                        throw new FileNotFoundException("Unable to configure WebAppContext base resource undefined");
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ManyConnectors.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         SslContextFactory sslContextFactory = new SslContextFactory();
         sslContextFactory.setKeyStorePath(keyStorePath);
-        sslContextFactory.setKeyStorePassword("rising");
-        //sslContextFactory.setKeyManagerPassword("rising111");
-        sslContextFactory.setProtocol("TLSv1");
-        // sslContextFactory.addExcludeCipherSuites(".*RC4.*");
-        // sslContextFactory.addExcludeCipherSuites("TLS_DHE_RSA.*");
+        sslContextFactory.setKeyStorePassword(PASS);
+        sslContextFactory.setKeyManagerPassword(PASS);
+        sslContextFactory.setProtocol("TLSv1.2");
+        // The mandatory HTTP/2 cipher.
+        //sslContextFactory.setIncludeCipherSuites("TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256");
+       // sslContextFactory.setIncludeCipherSuites("TLS_ECDHE_RSA.*");
+        //sslContextFactory.setIncludeCipherSuites("TLS_DHE_RSA.*");
+        
+        //sslContextFactory.addExcludeCipherSuites(".*NULL.*");
+        //sslContextFactory.addExcludeCipherSuites(".*RC4.*");
+        //sslContextFactory.addExcludeCipherSuites(".*MD5.*");
+        //sslContextFactory.addExcludeCipherSuites(".*DES.*");
+        //sslContextFactory.addExcludeCipherSuites(".*DSS.*");
+        
+        
+       // sslContextFactory.addExcludeProtocols("SSL", "SSLv2", "SSLv2Hello", "SSLv3");
+        sslContextFactory.setRenegotiationAllowed(false);
+        
+        //sslContextFactory.setCipherComparator(HTTP2Cipher.COMPARATOR);
         sslContextFactory.setCipherComparator(HTTP2Cipher.COMPARATOR);
+         sslContextFactory.setUseCipherSuitesOrder(true);
+
         return sslContextFactory;
     }
 
@@ -126,7 +162,8 @@ public class ManyConnectors {
                 getHTTP2Factory(),
                 new HttpConnectionFactory(getHttpConfig()));
         http2Connector.setPort(8443);
-        http2Connector.setIdleTimeout(200000);//TODO 30000
+        http2Connector.setIdleTimeout(2000000);//TODO 30000
+        
         return http2Connector;
     }
 

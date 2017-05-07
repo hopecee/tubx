@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hopecee.tublex.jetty.server;
+package jetty.server;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +16,7 @@ import org.eclipse.jetty.annotations.AbstractDiscoverableAnnotationHandler;
 import org.eclipse.jetty.annotations.AnnotationConfiguration;
 import org.eclipse.jetty.annotations.AnnotationDecorator;
 import org.eclipse.jetty.annotations.AnnotationParser;
-import org.eclipse.jetty.annotations.ClassNameResolver;
+//import org.eclipse.jetty.annotations.ClassNameResolver;
 import org.eclipse.jetty.annotations.WebFilterAnnotationHandler;
 import org.eclipse.jetty.annotations.WebListenerAnnotationHandler;
 import org.eclipse.jetty.annotations.WebServletAnnotationHandler;
@@ -28,17 +28,15 @@ import org.eclipse.jetty.webapp.WebAppContext;
  *
  * @author hope
  */
-
 public class MyAnnotationConfiguration extends AnnotationConfiguration {
 
+    /**
     //private static final Logger LOG = Log.getLogger(AnnotationConfiguration.class);
-   // private static final Logger log = Logger.getLogger(MyAnnotationConfiguration.class);
-
+    // private static final Logger log = Logger.getLogger(MyAnnotationConfiguration.class);
     @Override
     public void configure(WebAppContext context) throws Exception {
         boolean metadataComplete = context.getMetaData().isMetaDataComplete();
-        //context.addDecorator(new AnnotationDecorator(context));
-
+        context.getObjectFactory().addDecorator(new AnnotationDecorator(context));
 
         //Even if metadata is complete, we still need to scan for ServletContainerInitializers - if there are any
         AnnotationParser parser = null;
@@ -52,26 +50,22 @@ public class MyAnnotationConfiguration extends AnnotationConfiguration {
             }
         }
 
-
-
         parser = new AnnotationParser() {
             @Override
-            public void parse(Set<? extends AnnotationParser.Handler> handlers, Resource r, ClassNameResolver resolver) throws Exception {
+            public void parse(Set<? extends AnnotationParser.Handler> handlers, Resource r, ClassNameResolver resolver ) throws Exception {
                 if (r.isDirectory()) {
-                    super.parse(handlers, r, resolver);
-                } 
+                    super.parse(handlers, r, resolver );
+                }
                 //else {
-                 //   super.parse(handlers, r.getURI(), resolver);
-               // }
+                //   super.parse(handlers, r.getURI(), resolver);
+                // }
             }
         };
         getParse(context, parser);
 
-
-      // for (AbstractDiscoverableAnnotationHandler h:_discoverableAnnotationHandlers){
-      //                           context.getMetaData().addDiscoveredAnnotations(((AbstractDiscoverableAnnotationHandler)h).getAnnotationList());
-     //                            }  
-        
+        // for (AbstractDiscoverableAnnotationHandler h:_discoverableAnnotationHandlers){
+        //                           context.getMetaData().addDiscoveredAnnotations(((AbstractDiscoverableAnnotationHandler)h).getAnnotationList());
+        //                            }  
     }
 
     private void getParse(final WebAppContext context, AnnotationParser parser) throws Exception {
@@ -79,7 +73,7 @@ public class MyAnnotationConfiguration extends AnnotationConfiguration {
         for (Resource _resource : _resources) {
             if (_resource == null) {
                 return;
-            }else{
+            } else {
                 System.out.println("Resource :" + _resource.getName());
 
             }
@@ -93,17 +87,14 @@ public class MyAnnotationConfiguration extends AnnotationConfiguration {
             //parser.registerHandlers(_discoverableAnnotationHandlers);
             Set<AbstractDiscoverableAnnotationHandler> set_discoverableAnnotationHandlers = new HashSet<AbstractDiscoverableAnnotationHandler>(_discoverableAnnotationHandlers);
 
-           // List<String> _classNames = new ArrayList<String>();
-           // _classNames.add("javax.servlet.annotation.WebServlet");
-           // _classNames.add("javax.servlet.annotation.WebFilter");
-           // _classNames.add("javax.servlet.annotation.WebListener");
-
-         //   parser.parse(set_discoverableAnnotationHandlers, _classNames, _webAppClassNameResolver);
-
-
-           // parser.registerHandler(_classInheritanceHandler);
-           // parser.registerHandlers(_containerInitializerAnnotationHandlers);
-           parser.parse(set_discoverableAnnotationHandlers,_resource, new ClassNameResolver() {
+            // List<String> _classNames = new ArrayList<String>();
+            // _classNames.add("javax.servlet.annotation.WebServlet");
+            // _classNames.add("javax.servlet.annotation.WebFilter");
+            // _classNames.add("javax.servlet.annotation.WebListener");
+            //   parser.parse(set_discoverableAnnotationHandlers, _classNames, _webAppClassNameResolver);
+            // parser.registerHandler(_classInheritanceHandler);
+            // parser.registerHandlers(_containerInitializerAnnotationHandlers);
+            parser.parse(set_discoverableAnnotationHandlers, _resource , new ClassNameResolver() {
                 @Override
                 public boolean isExcluded(String name) {
                     if (context.isSystemClass(name)) {
@@ -124,13 +115,13 @@ public class MyAnnotationConfiguration extends AnnotationConfiguration {
                     return true;
                 }
             });
-           
+
         }
     }
 
     private List<Resource> getResources(ClassLoader aLoader) throws IOException {
         if (aLoader instanceof URLClassLoader) {
-            List<Resource> _result = new ArrayList<Resource>();
+            List<Resource> _result = new ArrayList<>();
             URL[] _urls = ((URLClassLoader) aLoader).getURLs();
             for (URL _url : _urls) {
                 _result.add(Resource.newResource(_url));
@@ -140,6 +131,5 @@ public class MyAnnotationConfiguration extends AnnotationConfiguration {
         }
         return Collections.emptyList();
     }
-
-
+*/
 }

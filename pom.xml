@@ -17,38 +17,32 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <alpn-boot-version>8.1.11.v20170118</alpn-boot-version>
         <seam.version>3.1.0.Final</seam.version>
-        
-        <npn.version>1.1.1.v20121030</npn.version>
         <datanucleus-core.version>3.2.12</datanucleus-core.version>
         <jdo-api.version>3.1-rc1</jdo-api.version>
         
-        <jetty.version>9.3.10.v20160621</jetty.version>
-         <rewrite.version>2.0.12.Final</rewrite.version>
+        <!--<jetty.version>9.3.10.v20160621</jetty.version> - ->
+        <jetty.version>9.3.19.v20170502</jetty.version>
+        <jetty.version>9.3.19.v20170502</jetty.version>
+        <jetty.version>9.4.5.v20170502</jetty.version>-->
+        
+        <jetty.version>9.3.19.v20170502</jetty.version>
+        <rewrite.version>2.0.12.Final</rewrite.version>
+        
+        
         
     </properties>
     
     <dependencies>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.6.2</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.btm</groupId>
-            <artifactId>btm</artifactId>
-            <version>2.1.4</version>
-            <type>jar</type>
-        </dependency>
         
-        
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>7.0</version>
+         
+        <dependency> 
+            <groupId>javax</groupId> 
+            <artifactId>javaee-api</artifactId> 
+            <version>7.0</version> 
             <scope>provided</scope>
         </dependency>
         
+       
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
@@ -74,6 +68,7 @@
             <artifactId>jetty-jmx</artifactId>
             <version>${jetty.version}</version>
         </dependency>
+        
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-alpn-server</artifactId>
@@ -84,11 +79,38 @@
             <artifactId>alpn-boot</artifactId>
             <version>${alpn-boot-version}</version>
         </dependency>
-       
+    
+    
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+        </dependency>
+        
+    
+    
+  
+    
+    
+    
+    
+    
+      <dependency> 
+            <groupId>javax.transaction</groupId> 
+            <artifactId>javax.transaction-api</artifactId> 
+            <version>1.2</version>           
+        </dependency>
+    
+<!--<dependency>
+      <groupId>javax.transaction</groupId>
+      <artifactId>javax.transaction-api</artifactId>
+    </dependency>
+    -->
+    
     </dependencies>
-
+       
     <build>
-        <plugins>
+    <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -103,18 +125,11 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.3</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.6</version>
                 <executions>
                     <execution>
+                        <id>copy</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>copy</goal>
@@ -132,9 +147,96 @@
                             </artifactItems>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>copy1</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}\libs</outputDirectory>
+                            <silent>true</silent>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.mortbay.jetty.alpn</groupId>
+                                    <artifactId>alpn-boot</artifactId>
+                                    <version>${alpn-boot-version}</version>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <!--
+                    <execution>
+                        <id>jetty-classpath</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            
+                               
+                                
+                                <includeGroupIds> 
+                                
+                                 org.eclipse.jetty,
+                                javax.servlet,
+                                javax.transaction,
+                                org.apache.logging.log4j,
+                                org.codehaus.btm,
+                                org.slf4j,
+                                mysql,
+                                org.ow2.asm,
+                                org.jboss.weld.servlet,
+                                javax.el,
+                                org.glassfish,
+                                org.ocpsoft.rewrite
+                                
+                                
+                                
+                                
+                                
+                                
+                                org.jboss.logging,
+                                
+                                commons-io,
+                                javax.annotation,
+                                
+                                
+                                
+                                asm,
+                                org.jboss.solder,
+                                org.jboss.seam.faces,
+                                org.jboss,
+                                
+                                org.mortbay.jetty.alpn
+                                
+                                 </includeGroupIds>
+                                
+                                
+                                
+                           
+                            
+                                <!- -
+                                <excludes>
+                                about.html,
+                                META-INF/maven/**/*,
+                                META-INF/services/**/*,
+                                images/**/*,
+                                
+                                .options
+                                </excludes>
+                                - ->
+                            
+                            <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+                            <silent>true</silent>
+                        </configuration>
+                    </execution> 
+                    -->
                 </executions>
             </plugin>
+            
+            
+            
         </plugins>
     </build>
-
 </project>
