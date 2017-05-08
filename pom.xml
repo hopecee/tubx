@@ -33,8 +33,6 @@
     </properties>
     
     <dependencies>
-        
-         
         <dependency> 
             <groupId>javax</groupId> 
             <artifactId>javaee-api</artifactId> 
@@ -87,21 +85,159 @@
             <version>18.0</version>
         </dependency>
         
+        
+        
+        
+    <!--
+  <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>apache-jsp</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>apache-jstl</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-util-ajax</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+        
+<dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-security</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+ <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-plus</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+<dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-servlets</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
     
     
-  
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-deploy</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-rewrite</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-jmx</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty.websocket</groupId>
+      <artifactId>javax-websocket-server-impl</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty.websocket</groupId>
+      <artifactId>websocket-server</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty.http2</groupId>
+      <artifactId>http2-server</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty.alpn</groupId>
+      <artifactId>alpn-api</artifactId>
+      <version>${alpn.api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-alpn-server</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-annotations</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty.tests</groupId>
+      <artifactId>test-mock-resources</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.transaction</groupId>
+      <artifactId>javax.transaction-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-proxy</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-jaas</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+   
+
     
     
+    <dependency>
+      <groupId>org.eclipse.jetty.cdi</groupId>
+      <artifactId>cdi-core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-plus</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-deploy</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.weld.servlet</groupId>
+      <artifactId>weld-servlet-core</artifactId>
+      <version>${weld.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>javax.el</groupId>
+          <artifactId>javax.el-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jboss.spec.javax.el</groupId>
+          <artifactId>jboss-el-api_3.0_spec</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jboss.spec.javax.annotation</groupId>
+          <artifactId>jboss-annotations-api_1.2_spec</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jboss.spec.javax.interceptor</groupId>
+          <artifactId>jboss-interceptors-api_1.2_spec</artifactId>
+        </exclusion>
+      </exclusions>
+</dependency>
+-->
     
-    
-    
+    <!--
       <dependency> 
             <groupId>javax.transaction</groupId> 
             <artifactId>javax.transaction-api</artifactId> 
             <version>1.2</version>           
         </dependency>
     
-<!--<dependency>
+<dependency>
       <groupId>javax.transaction</groupId>
       <artifactId>javax.transaction-api</artifactId>
     </dependency>
@@ -165,7 +301,7 @@
                             </artifactItems>
                         </configuration>
                     </execution>
-                    <!--
+                   
                     <execution>
                         <id>jetty-classpath</id>
                         <phase>prepare-package</phase>
@@ -173,19 +309,22 @@
                             <goal>unpack-dependencies</goal>
                         </goals>
                         <configuration>
-                            
-                               
+                            <includeGroupIds> 
+                                org.eclipse.jetty,      
+                                javax.servlet,      
+                                org.ow2.asm,
+                                javax.annotation,
+                                com.google.guava 
                                 
-                                <includeGroupIds> 
-                                
-                                 org.eclipse.jetty,
-                                javax.servlet,
+                                      
+                                <!-- 
+                                 ,
+                                ,
                                 javax.transaction,
                                 org.apache.logging.log4j,
                                 org.codehaus.btm,
                                 org.slf4j,
                                 mysql,
-                                org.ow2.asm,
                                 org.jboss.weld.servlet,
                                 javax.el,
                                 org.glassfish,
@@ -199,7 +338,7 @@
                                 org.jboss.logging,
                                 
                                 commons-io,
-                                javax.annotation,
+                                ,
                                 
                                 
                                 
@@ -209,14 +348,16 @@
                                 org.jboss,
                                 
                                 org.mortbay.jetty.alpn
-                                
+                                -->
                                  </includeGroupIds>
-                                
-                                
-                                
-                           
-                            
-                                <!- -
+                                <excludes>
+                                about.html,
+                                META-INF/maven/**/*,
+                                META-INF/services/**/*,
+                                images/**/*,
+                                .options
+                                </excludes>
+                                <!--
                                 <excludes>
                                 about.html,
                                 META-INF/maven/**/*,
@@ -225,16 +366,113 @@
                                 
                                 .options
                                 </excludes>
-                                - ->
+                                -->
                             
                             <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
                             <silent>true</silent>
                         </configuration>
                     </execution> 
-                    -->
+                    
                 </executions>
             </plugin>
-            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>copy-JettyBootstrap-server</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <copy todir="${project.build.directory}/${project.build.finalName}/jetty">
+                                    <fileset dir="target/classes/jetty"/>
+                                </copy>
+                                <copy todir="${project.build.directory}/${project.build.finalName}" includeEmptyDirs="yes" verbose="true">
+                                    <fileset dir="target/classes" >
+                                        <include name="keystore" />
+                                        <include name="log4j2.properties" />
+                                    </fileset>
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                    
+                </executions>
+            </plugin> 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <warName>tublex</warName>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <mainClass>jetty.bootstrap.JettyBootstrap</mainClass>
+                        </manifest>
+                    </archive>
+                    
+                    <packagingExcludes>
+                        WEB-INF/lib/jetty-*.jar,
+                        WEB-INF/lib/http2-*.jar,
+                        WEB-INF/lib/javax.servlet-*.jar,
+                        WEB-INF/lib/asm*.jar,
+                        WEB-INF/lib/guava-*.jar,
+                        WEB-INF/lib/javax.annotation-*.jar
+                        
+                    </packagingExcludes>
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!--
+                        <packagingExcludes>
+                       WEB-INF/lib/*.*,
+                        WEB-INF/classes/jetty/
+                        
+                        
+                        WEB-INF/lib/javax.transaction-*.jar,
+                        WEB-INF/lib/log4j-*.jar,
+                        WEB-INF/lib/btm*.jar,
+                        WEB-INF/lib/slf4j*.jar,
+                        WEB-INF/lib/mysql-*.jar,
+                        WEB-INF/lib/weld-*.jar,
+                        WEB-INF/lib/javax.el-*.jar,
+                        WEB-INF/lib/javax.faces*.jar,
+                        WEB-INF/lib/rewrite-*.jar,
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        ,
+                        
+                        
+                        
+                        
+                        
+                        WEB-INF/lib/solder-*.jar,
+                        
+                        
+                        
+                        WEB-INF/lib/seam-*.jar,
+                        
+                         WEB-INF/lib/commons-*.jar
+                        
+                        
+                    </packagingExcludes>
+                    -->
+                    
+                </configuration>
+            </plugin> 
             
             
         </plugins>

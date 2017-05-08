@@ -153,7 +153,7 @@ public class AppContext {
             this.warPath = myWarPath;
         }
         
-        File tempDir, scratchDir;
+        final File tempDir, scratchDir;
         tempDir = new File(System.getProperty("java.io.tmpdir"));
         scratchDir = new File(tempDir.toString(), "embedded-jetty-jsp");
         if (!scratchDir.exists()) {
