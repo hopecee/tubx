@@ -18,8 +18,10 @@
             <exec.args>-Xms1024m -Xmx1024m -agentpath:E:\PROGRA~2\NETBEA~1.1\java2\griffin\lib\jrebel64.dll -Xbootclasspath/p:C:/Users/Hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/${alpn-boot-version}/alpn-boot-${alpn-boot-version}.jar -classpath %classpath ${packageClassName}</exec.args>-->
             <exec.args>-Xms1024m -Xmx1024m -agentpath:E:\PROGRA~2\NETBEA~1.1\java2\griffin\lib\jrebel64.dll -Xbootclasspath/p:C:/Users/Hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/${alpn-boot-version}/alpn-boot-${alpn-boot-version}.jar -classpath %classpath ${packageClassName}</exec.args>
             <exec.executable>java</exec.executable>
-            <exec.classpathScope>${classPathScope}</exec.classpathScope>
+         <!--
+           <exec.classpathScope>${classPathScope}</exec.classpathScope>
         
+        -->
             
         </properties>
 

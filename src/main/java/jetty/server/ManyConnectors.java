@@ -39,14 +39,14 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
  * @author hope
  */
 public class ManyConnectors {
-    
+
     private final String DEV_KEYSTORE_PATH = "src/main/resources/keystore";
     private final String PROD_KEYSTORE_PATH = "/webapp/keystore";
     private final String PASS = "rising";
     private String keyStorePath;
-    
+
     AppContext appContext = new AppContext();
-    
+
     public ManyConnectors() {
         ALPN.debug = true;
     }
@@ -68,8 +68,6 @@ public class ManyConnectors {
     // HTTP Connector
     public ServerConnector getHttpConnector(Server server) {
         ServerConnector http = new ServerConnector(server, new HttpConnectionFactory(getHttpConfig()), new HTTP2CServerConnectionFactory(getHttpConfig()));
-        //http.setHost(keyStorePath);
-
         http.setPort(8080);
         http.setIdleTimeout(200000);//TODO 30000
         return http;
@@ -78,7 +76,7 @@ public class ManyConnectors {
     //SSL Context Factory for HTTPS and HTTP/2
     public SslContextFactory getSslContextFactory() {
         final String TEMP_DIR_PATH = System.getProperty("com.hopecee.tublex.jetty.main.TEMP_DIR_PATH");
-        
+
         try {
             if (null != appContext.getOperationalMode()) {
                 switch (appContext.getOperationalMode()) {
@@ -86,7 +84,7 @@ public class ManyConnectors {
                         keyStorePath = TEMP_DIR_PATH + PROD_KEYSTORE_PATH;
                         break;
                     case PROD_EXE:
-                        //keyStorePath = TEMP_DIR_PATH + PROD_KEYSTORE_PATH;
+                        keyStorePath = TEMP_DIR_PATH + PROD_KEYSTORE_PATH;
                         break;
                     case DEV:
                         keyStorePath = DEV_KEYSTORE_PATH;
@@ -98,7 +96,7 @@ public class ManyConnectors {
         } catch (IOException ex) {
             Logger.getLogger(ManyConnectors.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         SslContextFactory sslContextFactory = new SslContextFactory();
         sslContextFactory.setKeyStorePath(keyStorePath);
         sslContextFactory.setKeyStorePassword(PASS);
@@ -106,22 +104,19 @@ public class ManyConnectors {
         sslContextFactory.setProtocol("TLSv1.2");
         // The mandatory HTTP/2 cipher.
         //sslContextFactory.setIncludeCipherSuites("TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256");
-       // sslContextFactory.setIncludeCipherSuites("TLS_ECDHE_RSA.*");
+        // sslContextFactory.setIncludeCipherSuites("TLS_ECDHE_RSA.*");
         //sslContextFactory.setIncludeCipherSuites("TLS_DHE_RSA.*");
-        
+
         //sslContextFactory.addExcludeCipherSuites(".*NULL.*");
         //sslContextFactory.addExcludeCipherSuites(".*RC4.*");
         //sslContextFactory.addExcludeCipherSuites(".*MD5.*");
         //sslContextFactory.addExcludeCipherSuites(".*DES.*");
         //sslContextFactory.addExcludeCipherSuites(".*DSS.*");
-        
-        
-       // sslContextFactory.addExcludeProtocols("SSL", "SSLv2", "SSLv2Hello", "SSLv3");
-        sslContextFactory.setRenegotiationAllowed(false);
-        
+        //sslContextFactory.addExcludeProtocols("SSL", "SSLv2", "SSLv2Hello", "SSLv3");
+        //sslContextFactory.setRenegotiationAllowed(false);
         //sslContextFactory.setCipherComparator(HTTP2Cipher.COMPARATOR);
         sslContextFactory.setCipherComparator(HTTP2Cipher.COMPARATOR);
-         sslContextFactory.setUseCipherSuitesOrder(true);
+        sslContextFactory.setUseCipherSuitesOrder(true);
 
         return sslContextFactory;
     }
@@ -163,7 +158,7 @@ public class ManyConnectors {
                 new HttpConnectionFactory(getHttpConfig()));
         http2Connector.setPort(8443);
         http2Connector.setIdleTimeout(2000000);//TODO 30000
-        
+
         return http2Connector;
     }
 

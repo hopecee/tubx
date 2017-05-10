@@ -21,8 +21,9 @@
         <jdo-api.version>3.1-rc1</jdo-api.version>
         
         <!--<jetty.version>9.3.10.v20160621</jetty.version> - ->
+        <jetty.version>9.3.18.v20170406</jetty.version>
         <jetty.version>9.3.19.v20170502</jetty.version>
-        <jetty.version>9.3.19.v20170502</jetty.version>
+         <jetty.version>9.4.4.v20170414</jetty.version>
         <jetty.version>9.4.5.v20170502</jetty.version>-->
         
         <jetty.version>9.3.19.v20170502</jetty.version>
@@ -33,13 +34,14 @@
     </properties>
     
     <dependencies>
+        <!--
         <dependency> 
             <groupId>javax</groupId> 
             <artifactId>javaee-api</artifactId> 
             <version>7.0</version> 
             <scope>provided</scope>
         </dependency>
-        
+        -->
        
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
@@ -77,8 +79,6 @@
             <artifactId>alpn-boot</artifactId>
             <version>${alpn-boot-version}</version>
         </dependency>
-    
-    
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -86,9 +86,96 @@
         </dependency>
         
         
+        <!-- log4j -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-1.2-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <!--Hibernate to work with Log4j 2.0, I had to upgrade to upgrade to JBoss Logging 3.2.0.Beta1. -->
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>3.3.0.Final</version>
+        </dependency> 
+        <dependency> 
+            <groupId>javax.transaction</groupId> 
+            <artifactId>javax.transaction-api</artifactId> 
+            <version>1.2</version>           
+        </dependency>
+        
+        <!-- ==3== rewrite -->
+        <dependency>
+            <groupId>org.ocpsoft.rewrite</groupId>
+            <artifactId>rewrite-servlet</artifactId>
+            <version>2.0.12.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ocpsoft.rewrite</groupId>
+            <artifactId>rewrite-config-prettyfaces</artifactId>
+            <version>2.0.12.Final</version>
+           <!--<exclusions>
+                <exclusion>
+                    <groupId>org.ocpsoft.logging</groupId>
+                    <artifactId>logging-api</artifactId>
+                </exclusion>
+            </exclusions>-->
+        </dependency>
+        
+        <!-- faces -->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.faces</artifactId>
+            <!-- 2.2.5 without HB. validator -->
+            <version>2.2.0-m15</version>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency> 
+        <!--EL resolver stuff (managed beans, jsf ...)-->
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>el-impl</artifactId>
+            <version>2.2.1-b05</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>3.0.0</version>
+        </dependency> 
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>  
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.2</version>
+        </dependency>
+        
+        
         
         
     <!--
+    
+        <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-rewrite</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
   <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>apache-jsp</artifactId>
@@ -231,11 +318,7 @@
 -->
     
     <!--
-      <dependency> 
-            <groupId>javax.transaction</groupId> 
-            <artifactId>javax.transaction-api</artifactId> 
-            <version>1.2</version>           
-        </dependency>
+      
     
 <dependency>
       <groupId>javax.transaction</groupId>
@@ -264,7 +347,7 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.6</version>
                 <executions>
-                    <execution>
+                   <!-- <execution>
                         <id>copy</id>
                         <phase>validate</phase>
                         <goals>
@@ -282,7 +365,7 @@
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
-                    </execution>
+                    </execution>-->
                     <execution>
                         <id>copy1</id>
                         <phase>validate</phase>
@@ -314,16 +397,18 @@
                                 javax.servlet,      
                                 org.ow2.asm,
                                 javax.annotation,
-                                com.google.guava 
-                                
-                                      
+                                com.google.guava, 
+                                org.apache.logging.log4j,
+                                org.jboss.logging,
+                                org.slf4j,
+                                 javax.transaction   
                                 <!-- 
                                  ,
                                 ,
-                                javax.transaction,
-                                org.apache.logging.log4j,
+                                ,
+                                
                                 org.codehaus.btm,
-                                org.slf4j,
+                                ,
                                 mysql,
                                 org.jboss.weld.servlet,
                                 javax.el,
@@ -335,7 +420,7 @@
                                 
                                 
                                 
-                                org.jboss.logging,
+                                
                                 
                                 commons-io,
                                 ,
@@ -350,13 +435,7 @@
                                 org.mortbay.jetty.alpn
                                 -->
                                  </includeGroupIds>
-                                <excludes>
-                                about.html,
-                                META-INF/maven/**/*,
-                                META-INF/services/**/*,
-                                images/**/*,
-                                .options
-                                </excludes>
+                                
                                 <!--
                                 <excludes>
                                 about.html,
@@ -412,7 +491,7 @@
                     <archive>
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            <mainClass>jetty.bootstrap.JettyBootstrap</mainClass>
+                            <mainClass>jetty.main.ServerMain</mainClass>
                         </manifest>
                     </archive>
                     
@@ -422,7 +501,11 @@
                         WEB-INF/lib/javax.servlet-*.jar,
                         WEB-INF/lib/asm*.jar,
                         WEB-INF/lib/guava-*.jar,
-                        WEB-INF/lib/javax.annotation-*.jar
+                        WEB-INF/lib/javax.annotation-*.jar,
+                        WEB-INF/lib/log4j-*.jar,
+                        WEB-INF/lib/slf4j-*.jar,
+                        WEB-INF/lib/jboss-*.jar,
+                        WEB-INF/lib/javax.transaction-*.jar
                         
                     </packagingExcludes>
                         
@@ -437,10 +520,10 @@
                         WEB-INF/classes/jetty/
                         
                         
-                        WEB-INF/lib/javax.transaction-*.jar,
-                        WEB-INF/lib/log4j-*.jar,
+                        ,
+                        
                         WEB-INF/lib/btm*.jar,
-                        WEB-INF/lib/slf4j*.jar,
+                        
                         WEB-INF/lib/mysql-*.jar,
                         WEB-INF/lib/weld-*.jar,
                         WEB-INF/lib/javax.el-*.jar,

@@ -42,7 +42,7 @@ public class ServerRunner extends JFrame {
                           //  checkBTMproperlyShotdown();
 		//		if(jettyServer.isStarted()) {
 					try {
-		//				jettyServer.stop();
+						jettyServer.stop();
 					} catch (Exception exception) {
 					}
 				}
