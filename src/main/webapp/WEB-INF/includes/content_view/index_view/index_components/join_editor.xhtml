@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" 
+    [<!ENTITY nbsp "&#160;">]>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+                xmlns:cc="http://java.sun.com/jsf/composite">
+
+    <!-- xmlns:s="http://jboss.org/seam/faces"-->
+
+
+
+
+    
+    <!-- index-->
+    <h:outputScript library="custom" name="js/index.js" />
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    <td class="ui-corner-all" valign="top" align="right" style=" background-color: #FFF; padding:  0; ; border: #CCC 1px solid; "  height="500" width="500">
+
+        <div style=" width: 452px ">
+
+               <!-- <h:form id="joinEditorform" onsubmit="document.#{p:component('joinEditorform')}.action='create_account';"  enctype="multipart/form-data" > 
+              <form id="form" action=""  method="post" novalidate="novalidate">
+       <form id="joinEditorform" action=""  method="post" novalidate="novalidate">
+   
+            -->
+
+           <!-- <h:form id="joinEditorform" onsubmit="document.#{p:component('joinEditorform')}.action='create_account';"  enctype="multipart/form-data" > -->
+            <h:form id="joinEditorform"  enctype="multipart/form-data" > 
+                <p:panel style=" vertical-align: top; border-color: whitesmoke; border-width: 2px; padding-left: 1px; padding-right:  1px;   -moz-border-radius: 3px; -webkit-border-radius: 3px;
+                         border-radius: 3px; width: 410px; height: 520px;" >
+
+                    <h:panelGrid  style="vertical-align: top;  padding: 1px; " columns="2">
+                        <h:panelGrid  style="vertical-align: top; padding: 5px; " columns="1">
+                            <p:panel  style=" background-color: white; padding: 0px; vertical-align: top; width: 50px; height: 50px; border-color: #{msg.panelbgcolor}; ">
+                                <div id="joinEditorBusy" style="width: 50px; height: 50px; overflow: hidden;"/>
+                            </p:panel>
+                            <p:panel style=" background-color: white; padding: 0px; vertical-align: top; width: 50px; height: 270px; border-color: #{msg.panelbgcolor}; "/>
+                        </h:panelGrid> 
+
+                        <p:panel id="joinEditorformInnerPanel" header="header" styleClass="joinEditorInnerPanel"  style=" background-color:#{msg.panelbgcolor}; border: solid 1px #333333; text-align: left; padding: 0px;" >
+                            <f:facet name="header" >#{msg.joinProshop}</f:facet> 
+                            <h:panelGrid  style=" vertical-align: top; padding: 5px;" columns="2">
+
+                                <h:panelGrid columns="1" >
+                                    <h:panelGrid  columns="1"  >
+
+
+<!-- <p:panel style=" background-color: #{msg.panelbgcolor}; padding: 0px; vertical-align: top; width: 10px; height: 1px; border-color: #{msg.panelbgcolor}; " />
+                                        <p:panel style=" background-color: #{msg.panelbgcolor}; padding: 0px; vertical-align: top; width: 10px; height: 1px; border-color: #{msg.panelbgcolor}; " />
+                                        -->
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <h:outputLabel  for="email" style=" font-weight: normal; text-align: right;" value="Email Address :"/>
+                                                <h:inputText  id="email" value="#{userBean.usersEmailAddress}" size="25"   onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"  >
+                                                    <f:passThroughAttribute name="data-bind"  value="value: usersEmailAddress"/>  
+                                                </h:inputText>
+                                            </h:panelGrid>
+                                        </p:column>
+                                        <!-- <p:column >
+                                            <div class="field" align="right" >
+                                                <h:panelGrid  columns="1"  >
+                                                    <p:message for="email" id="msgEmail" display="text" />
+                                                </h:panelGrid>
+                                            </div>
+                                        </p:column>-->
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <h:outputLabel for="firstName" style=" font-weight: normal" value="First Name : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputText  id="firstName" value="#{userBean.usersFirstname}" size="25"  onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"  >
+                                                    <f:passThroughAttribute name="data-bind"  value="value: usersFirstname"/>  
+                                                </h:inputText>
+                                            </h:panelGrid>
+                                        </p:column>
+
+                                        <p:column >
+                                            <h:panelGrid  columns="2" style="">
+                                                <h:outputLabel for="lastName" style=" font-weight: normal" value="Last Name : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputText  id="lastName" value="#{userBean.usersLastname}" size="25"  onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"   >
+                                                    <f:passThroughAttribute name="data-bind"  value="value: usersLastname"/>  
+                                                </h:inputText>
+                                            </h:panelGrid>
+                                        </p:column>
+
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <h:outputLabel for="password" style="font-weight: normal" value="Password : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputSecret id="password" binding="#{password}" value="#{userBean.usersPassword}" size="25"  onchange="$('passwordConfirm').show();" onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"   >
+                                                    <f:passThroughAttribute name="data-bind"  value="value: usersPassword"/>  
+
+                                                </h:inputSecret>
+                                            </h:panelGrid>
+                                        </p:column>
+
+
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <h:outputLabel for="confirm" style="font-weight: normal" value="Confirm :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputSecret  id="confirm" value="#{userBean.passwordConfirm}" size="25"   onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"   >
+                                                    <f:passThroughAttribute name="data-bind"  value="value: passwordConfirm"/>  
+                                                </h:inputSecret>
+                                            </h:panelGrid>
+                                        </p:column>
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <h:outputLabel  style="font-weight: normal" value=""/>
+                                                <h:outputLabel   style="font-weight: normal" value=""/> 
+                                            </h:panelGrid>
+                                        </p:column>
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <h:selectBooleanCheckbox id="agree" value="#{userBean.agree}">
+                                                    <f:passThroughAttribute name="data-bind"  value="checked: agree"/>  
+                                                </h:selectBooleanCheckbox>
+                                                <h:outputLabel for="agree" style="font-weight: normal" value="I agree to the ProShop Terms and Privacy."/>
+                                            </h:panelGrid>
+                                        </p:column>
+
+
+                                        <p:column >
+                                            <div class="field buttons" align="right" >
+                                                <h:panelGrid  columns="1"  style=" padding: 10px" >
+                                                   <!--  <p:commandButton id="joinEditorButton"  action="#{userBean.createUser()}"  style="font-weight: normal; border: solid 1px #8ab0c6;"  value="Join Now"  > -->
+                                                    <p:commandButton id="joinEditorButton"  action=" "  style="font-weight: normal; border: solid 1px #8ab0c6;"  value="Join Now"  >
+                                                        <f:passThroughAttribute name="data-bind"  value="click: onSubmit"/>  
+                                                        <!-- <f:param name="createProfile}" value="createProfile" />
+                                                                <f:param  id="emailParam" name="newUserEmail"  />
+                                                        -->
+                                                    </p:commandButton>
+                                                </h:panelGrid>
+                                            </div>
+                                        </p:column>
+                                        <p:column >
+                                            <div align="center" >
+                                                <h:panelGrid  columns="2" >
+                                                    <p:outputLabel   style="font-weight: normal" value="#{msg.alreadyRegistered}&nbsp;&nbsp;&nbsp;"/>
+                                                    <h:link  outcome="index" value="#{msg.login}">
+                                                        <f:param name="#{msg.loginPage}" value="#{msg.loginPage}" />
+                                                    </h:link> 
+                                                </h:panelGrid>
+                                            </div>
+                                        </p:column>
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel  style="font-weight: normal" value=""/>
+                                                <p:outputLabel   style="font-weight: normal" value=""/> 
+                                            </h:panelGrid>
+                                        </p:column>
+
+
+
+
+                                    </h:panelGrid>
+                                </h:panelGrid>
+                            </h:panelGrid>
+                        </p:panel>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>  
+        </div>
+
+    </td>
+</ui:composition>

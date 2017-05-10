@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" 
+    [<!ENTITY nbsp "&#160;">]>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+                xmlns:cc="http://java.sun.com/jsf/composite">
+
+
+    <div>
+        <!-- 
+        <table style=" border: #CCCCCC; border-width: 5px; border-style:  solid "  width="100%" >
+            <tr style="vertical-align: top">
+                <td >
+                    <table >
+                        <tr >
+                            <ui:insert name="userPanel" >
+                                <ui:include id="" src="/WEB-INF/includes/content_view/user_panel_view/user_panel.xhtml" /> 
+                            </ui:insert>
+                        </tr>
+                    </table>
+                </td>
+                <td >
+                    <table  style=" " >
+                        <tr >
+                            <ui:insert name="editorPanel" >
+                                <ui:include id="" src="/WEB-INF/includes/content_view/editor_panel_view/editor_panel.xhtml" /> 
+                            </ui:insert>
+                        </tr>
+                    </table>
+                </td>
+                <td >
+                    <table  style=" " >
+                        <tr >
+                            <ui:insert name="adsPanel" >
+                                <ui:include id="" src="/WEB-INF/includes/content_view/ads_panel_view/ads_panel.xhtml" /> 
+                            </ui:insert>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+-->
+
+      <table style="padding: 5px ">
+            <tr style="vertical-align: top">
+                 <ui:insert name="index" >
+                                <ui:include id="" src="/WEB-INF/includes/content_view/index_view/index.xhtml" /> 
+                            </ui:insert>
+              
+                
+            </tr>
+        </table>
+
+
+    </div>
+</ui:composition>

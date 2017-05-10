@@ -26,7 +26,7 @@ public class RewriteConfigurationProvider extends HttpConfigurationProvider {
     @Override
     public Configuration getConfiguration(final ServletContext t) {
         return ConfigurationBuilder.begin()
-                .addRule(Join.path("/").to("/public/index.html"))
+                .addRule(Join.path("/").to("/public/index.xhtml"))
                 //.when(Direction.isInbound().and(Path.matches("/some/{page}/")))
                 //.perform(Forward.to("/new-{page}/"))
                 ;

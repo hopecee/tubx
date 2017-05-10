@@ -114,6 +114,7 @@
             <version>1.2</version>           
         </dependency>
         
+    <!-- =============lib================================= -->
         <!-- ==3== rewrite -->
         <dependency>
             <groupId>org.ocpsoft.rewrite</groupId>
@@ -167,9 +168,47 @@
         </dependency>
         
         
+        <dependency>
+            <groupId>org.jboss.weld.servlet</groupId>
+            <artifactId>weld-servlet</artifactId> 
+            <!--<version>2.3.5.Final</version>
+            <version>2.1.1.Final</version>-->
+            <version>2.1.1.Final</version>
+            <!--<artifactId>weld-servlet-core</artifactId>
+            <version>2.3.5.Final</version>-->
+        </dependency>
         
         
-    <!--
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!--<dependency>
+            <groupId>org.eclipse.jetty.cdi</groupId>
+            <artifactId>cdi-core</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>-->
+        
+        <!--
     
         <dependency>
       <groupId>org.eclipse.jetty</groupId>
@@ -401,11 +440,20 @@
                                 org.apache.logging.log4j,
                                 org.jboss.logging,
                                 org.slf4j,
-                                 javax.transaction   
+                                 javax.transaction
+                                
+                                
                                 <!-- 
-                                 ,
                                 ,
-                                ,
+                                  
+                                javax.el,
+                                org.glassfish,
+                                 org.glassfish.web,
+                                taglibs,
+                                javax.servlet,
+                                javax.servlet.jsp
+                                
+                                
                                 
                                 org.codehaus.btm,
                                 ,
@@ -519,6 +567,14 @@
                        WEB-INF/lib/*.*,
                         WEB-INF/classes/jetty/
                         
+                        ,
+                        
+                         WEB-INF/lib/javax.el-*.jar,
+                        WEB-INF/lib/javax.faces*.jar,
+                         WEB-INF/lib/standard*.jar,
+                        WEB-INF/lib/el-*.jar,
+                        WEB-INF/lib/jstl*.jar,
+                        WEB-INF/lib/jsp-*.jar
                         
                         ,
                         
@@ -526,8 +582,7 @@
                         
                         WEB-INF/lib/mysql-*.jar,
                         WEB-INF/lib/weld-*.jar,
-                        WEB-INF/lib/javax.el-*.jar,
-                        WEB-INF/lib/javax.faces*.jar,
+                       
                         WEB-INF/lib/rewrite-*.jar,
                         
                         

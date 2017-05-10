@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" 
+    [<!ENTITY nbsp "&#160;">]>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+                xmlns:cc="http://java.sun.com/jsf/composite">
+
+    <div>
+
+        <!-- TODO remove to see the effect - ->
+<script type="text/javascript" src="/javax.faces.resource/jquery/jquery.js.xhtml?ln=primefaces&amp;v=4.0"></script>
+- ->
+<script type="text/javascript" src="/javax.faces.resource/primefaces.js.xhtml?ln=primefaces&amp;v=4.0"></script>
+-->
+
+        <!--jQuery References - ->
+        <h:outputScript library="open" name="development-bundle/external/jquery-1.8.2.min.js" />
+        <h:outputScript library="open" name="development-bundle/external/jquery-ui-1.9.1.custom.min.js" />
+        <h:outputScript library="custom" name="jquery-ui/jquery-ui.onobtrusive.min.js" />
+-->
+        <!--sammy References - ->
+        <h:outputScript library="sammy" name="sammy.js" />
+        <h:outputScript library="sammy" name="plugins/sammy.template.js" />
+-->
+        <!-- Wijmo menu - ->  
+        <h:outputScript library="custom" name="js/menu.js" />
+--> 
+       <!--Document JavaScript - ->
+  <h:outputScript library="custom" name="jqueryDoc.js" />
+-->
+        <!--Wijmo Widgets JavaScript - ->  
+        <script src="/faces/javax.faces.resource/open/js/jquery.wijmo-open.all.2.3.1.min.js" type="text/javascript"></script>
+--> 
+
+
+
+        <!-- validate - ->
+        <h:outputScript library="custom" name="validate/jquery.validate.js" />
+        <h:outputScript library="custom" name="validate/jquery.validate.unobtrusive.js" />
+-->
+
+        <!-- json - ->
+        <script type="text/javascript" src="#{request.contextPath}/resources/primefaces-proshop/json.js" ></script>
+-->
+ 
+  
+  
+       <!--
+        <h:outputScript library="custom" name="stickyheader/jquery.sticky.js" />
+
+       
+        <!- - knockout - ->
+        <h:outputScript library="knockout" name="knockout-3.1.0.js" />
+-->
+
+
+
+
+        <!--  jquerySession  - ->
+        <script type="text/javascript" src="#{request.contextPath}/resources/primefaces-proshop/jquerySession.js" ></script>
+
+-->
+
+    </div>
+
+
+</ui:composition>

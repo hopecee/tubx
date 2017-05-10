@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" 
+    [<!ENTITY nbsp "&#160;">]>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+                xmlns:cc="http://java.sun.com/jsf/composite">
+
+    <td >
+        <table >
+            <tr >
+                <c:choose>
+                   
+                     <c:when test="#{sessionScope['userStatus'] == '10'}">
+                     <!-- step 2  -->
+                     
+                 
+                     
+                 
+                     
+                     <ui:insert name="joinEditor2"  >
+                                <ui:include id="" src="/WEB-INF/includes/content_view/index_view/index_components/join_2_editor.xhtml" /> 
+                            </ui:insert>
+                   
+                    
+                   <!--
+                     <ui:insert name="indexIntro" >
+                                <ui:include id="" src="/WEB-INF/includes/content_view/index_view/index_components/index_intro.xhtml" /> 
+                            </ui:insert>
+                   
+                            <ui:insert name="joinEditor"  >
+                                <ui:include id="" src="/WEB-INF/includes/content_view/index_view/index_components/join_editor.xhtml" /> 
+                            </ui:insert>
+                    
+                     
+                     -->
+                    
+                    </c:when>
+                    
+                    
+                    <c:otherwise>
+                        <!-- step 1 -->
+                       <ui:insert name="indexIntro" >
+                                <ui:include id="" src="/WEB-INF/includes/content_view/index_view/index_components/index_intro.xhtml" /> 
+                            </ui:insert>
+                   
+                            <ui:insert name="joinEditor"  >
+                                <ui:include id="" src="/WEB-INF/includes/content_view/index_view/index_components/join_editor.xhtml" /> 
+                            </ui:insert>
+                    </c:otherwise>
+                </c:choose>
+                
+                          
+                        
+            </tr>
+        </table>
+    </td>
+
+
+</ui:composition>
+

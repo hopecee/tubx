@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" 
+    [<!ENTITY nbsp "&#160;">]>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+                xmlns:cc="http://java.sun.com/jsf/composite">
+
+<!-- xmlns:s="http://jboss.org/seam/faces"-->
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+            var email = $(PrimeFaces.escapeClientId('joinEditorform:email')).val();
+            var firstName = $(PrimeFaces.escapeClientId('joinEditorform:firstName')).val();
+            var lastName = $(PrimeFaces.escapeClientId('joinEditorform:lastName')).val();
+            var password = $(PrimeFaces.escapeClientId('joinEditorform:password')).val();
+
+            $(PrimeFaces.escapeClientId('joinEditorform:joinEditorButton')).click(function(e) {
+
+                if (//errorEmail > 0 ||  errorConf > 0 || 
+                       // company == ''||  company == ' ' || 
+                        !firstName )
+                { 
+
+                    //do nothing.
+                } else {
+                    var busy = getBusyOverlay(document.getElementById('joinEditorBusy'), {color: 'white', opacity: 0.05, text: '', style: 'text-shadow: 0 0 3px black;font-weight:bold;font-size:16px;color:white'}, {color: 'black', size: 50, type: 'o'});
+                }
+            });
+        });
+
+
+    </script>
+
+<script>
+	$(function(){
+
+		/*---------------------
+			
+			FORM VALIDATION
+		
+		---------------------*/
+
+		var formSettings = {
+			singleError			: function($field, rules){
+
+				$field
+					.closest('.field')
+					.removeClass('valid')
+					.addClass('error');
+					
+			},
+			singleSuccess			: function($field, rules){
+
+				$field
+					.closest('.field')
+					.removeClass('error')
+					.addClass('valid');
+
+			},
+			overallSuccess        	: function(){
+
+				alert('Everything is OK, submit!');
+
+			},
+			overallError			: function($form, fields){
+
+				alert('Errors found');
+
+			},
+			autoDetect				: true,
+			debug                 	: true,
+			// Add in a new RegExp rule
+			regExp					: {
+				username				: /^[a-zA-Z0-9\-_]*$/
+			}
+		};
+
+		var $validate = $('#form')
+				.validate(formSettings)
+				.data('validate');
+
+		/*---------------------
+		
+			Custom validation
+		
+		*/
+
+		$validate.checkMatches = function($field, toMatch){
+
+			return $field.val() == $('[name="'+toMatch+'"]').val();
+			
+		}
+
+	});
+</script>
+
+
+    <td class="ui-corner-all"  style=" vertical-align: top; background-color: #FFF; padding:  0; ; border: #CCC 1px solid; "  height="500" width="450">
+        <div align="right">   
+
+
+               <!-- <h:form id="joinEditorform" onsubmit="document.#{p:component('joinEditorform')}.action='create_account';"  enctype="multipart/form-data" > -->
+            <h:form id="joinEditorform"  enctype="multipart/form-data" > 
+                <p:panel style=" vertical-align: top; border-color: whitesmoke; border-width: 2px; padding-left: 1px; padding-right:  1px;   -moz-border-radius: 3px; -webkit-border-radius: 3px;
+                         border-radius: 3px; width: 410px; height: 520px;" >
+
+                    <h:panelGrid  style="vertical-align: top;  padding: 1px; " columns="2">
+                        <h:panelGrid  style="vertical-align: top; padding: 5px; " columns="1">
+                            <p:panel  style=" background-color: white; padding: 0px; vertical-align: top; width: 50px; height: 50px; border-color: #{msg.panelbgcolor}; ">
+                                <div id="joinEditorBusy" style="width: 50px; height: 50px; overflow: hidden;"/>
+                            </p:panel>
+                            <p:panel style=" background-color: white; padding: 0px; vertical-align: top; width: 50px; height: 300px; border-color: #{msg.panelbgcolor}; "/>
+                        </h:panelGrid> 
+
+                        <p:panel id="joinEditorformInnerPanel" header="header" styleClass="joinEditorInnerPanel"  style=" background-color:#{msg.panelbgcolor}; border: solid 1px #333333; text-align: left; padding: 0px;" >
+                            <f:facet name="header" >#{msg.joinProshop}</f:facet> 
+                            <h:panelGrid  style=" vertical-align: top; padding: 5px;" columns="2">
+  
+                                <h:panelGrid columns="1" >
+                                    <h:panelGrid  columns="1"  >
+                                       
+
+<!-- <p:panel style=" background-color: #{msg.panelbgcolor}; padding: 0px; vertical-align: top; width: 10px; height: 1px; border-color: #{msg.panelbgcolor}; " />
+                                        <p:panel style=" background-color: #{msg.panelbgcolor}; padding: 0px; vertical-align: top; width: 10px; height: 1px; border-color: #{msg.panelbgcolor}; " />
+                                        -->
+                                        <p:column >
+                                            <div class="field" align="right" >
+                                            <h:panelGrid  columns="2" >
+                                                <h:outputLabel  for="email" style=" font-weight: normal; text-align: right;" value="Email Address :"/>
+                                                <input  id="email" type="email"  value="#{userBean.usersEmailAddress}" class="text"  size="25" style=" background-color: white ; border: solid 1px #8ab0c6;"  onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"  requiredMessage="Missing customer ID"  data-validate="required">
+                                                    <!--<p:ajax update="msgEmail" event="blur" />-->
+                                                </input> 
+                                            </h:panelGrid>
+                                                </div >
+                                        </p:column>
+                                        <!-- <p:column >
+                                            <div class="field" align="right" >
+                                                <h:panelGrid  columns="1"  >
+                                                    <p:message for="email" id="msgEmail" display="text" />
+                                                </h:panelGrid>
+                                            </div>
+                                        </p:column>-->
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel for="firstName" style=" font-weight: normal" value="First Name : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputText id="firstName" value="#{userBean.usersFirstname}" size="25" style=" background-color: white ; border: solid 1px #8ab0c6;"  onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');" requiredMessage="Missing first Name" >
+                                                    <!--<p:ajax update="msgFirstName" event="blur" />-->
+                                                </h:inputText>
+                                            </h:panelGrid>
+                                        </p:column>
+                                        <p:column style="padding:  0px">
+                                            <div align="right" style="padding: 0px">
+                                                <h:panelGrid  columns="1" style="border-style: none" >
+                                                    <p:message for="firstName" id="msgFirstName" display="text" />
+                                                </h:panelGrid>
+                                            </div>
+                                        </p:column>
+                                        <p:column >
+                                            <h:panelGrid  columns="2" style="">
+                                                <p:outputLabel for="lastName" style=" font-weight: normal" value="Last Name : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputText  id="lastName" value="#{userBean.usersLastname}" size="25" style=" background-color: white ; border: solid 1px #8ab0c6;"  onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"   requiredMessage="Missing last Name">
+                                                    <!--<p:ajax update="msgLastName" event="blur" />-->
+                                                </h:inputText>
+                                            </h:panelGrid>
+                                        </p:column>
+                                        <p:column  >
+                                            <div align="right" >
+                                                <h:panelGrid  columns="1" >
+                                                    <p:message  for="lastName" id="msgLastName" display="text" />
+                                                </h:panelGrid>
+                                            </div>
+                                        </p:column>
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel for="password" style="font-weight: normal" value="Password : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputSecret id="password" binding="#{password}" value="#{userBean.usersPassword}" size="25" style=" background-color: white; border: solid 1px #8ab0c6;" onchange="$('passwordConfirm').show();" onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"  requiredMessage="Missing customer Password." /> 
+                                            </h:panelGrid>
+                                        </p:column>
+                                        <p:column >
+                                            <div align="right" >
+                                                <h:panelGrid  columns="1"  >
+                                                    <p:message for="password" id="msgPassword1"  />
+                                                </h:panelGrid>
+                                            </div>
+                                        </p:column>
+
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel for="confirm" style="font-weight: normal" value="Confirm :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputSecret  id="confirm" value="#{userBean.passwordConfirm}" size="25" style=" background-color: white; border: solid 1px #8ab0c6;"  onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"  requiredMessage="Missing customer Password." >
+                                                    <!-- <f:validator validatorId="passwordValidator" />
+                                                      <f:attribute name="password" value="#{password}" />
+                                                    <f:validateLength minimum="6" />
+                                                   
+                                                    <f:validator binding="#{passwordValidator}" />-->
+                                                    <f:attribute name="password" value="joinEditorform:password" />
+                                                    <!-- <p:ajax update="msgPassword" event="blur" />-->
+                                                </h:inputSecret>
+                                            </h:panelGrid>
+                                        </p:column>
+                                        <p:column >
+                                            <div align="right" >
+                                                <h:panelGrid  columns="1"  >
+                                                    <p:message for="confirm" id="msgPassword"  />
+                                                </h:panelGrid>
+                                            </div>
+                                        </p:column>
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel  style="font-weight: normal" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <p:outputLabel   style="font-weight: normal" value="6 or more characters. "/> 
+                                            </h:panelGrid>
+                                        </p:column>
+                                        <p:column >
+                                            <div class="field buttons" align="center" >
+                                                <h:panelGrid  columns="1"  style=" padding: 10px" >
+                                                    <button type="submit" name="submit_form">Submit</button>
+                                                    <!-- <p:commandButton id="joinEditorButton" validateClient="true" action="#{userBean.createUser()}"    style="font-weight: normal; border: solid 1px #8ab0c6;"  value="Join Now"  >
+                                                        <!- - <f:param name="createProfile}" value="createProfile" />
+                                                         <f:param  id="emailParam" name="newUserEmail"  />
+                                                        - ->
+                                                    </p:commandButton> -->
+                                                </h:panelGrid>
+                                            </div>
+                                        </p:column>
+                                        <p:column >
+                                            <div align="center" >
+                                                <h:panelGrid  columns="2" >
+                                                    <p:outputLabel   style="font-weight: normal" value="#{msg.alreadyRegistered}&nbsp;&nbsp;&nbsp;"/>
+                                                    <h:link  outcome="index" value="#{msg.login}">
+                                                        <f:param name="#{msg.loginPage}" value="#{msg.loginPage}" />
+                                                    </h:link> 
+                                                </h:panelGrid>
+                                            </div>
+                                        </p:column>
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel  style="font-weight: normal" value=""/>
+                                                <p:outputLabel   style="font-weight: normal" value=""/> 
+                                            </h:panelGrid>
+                                        </p:column>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    </h:panelGrid>
+                                  
+
+                                </h:panelGrid>
+                            </h:panelGrid>
+                        </p:panel>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form> 
+        </div> 
+    </td>
+</ui:composition>

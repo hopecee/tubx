@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" 
+    [<!ENTITY nbsp "&#160;">]>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+                xmlns:cc="http://java.sun.com/jsf/composite"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:of="http://omnifaces.org/functions">
+
+    <!-- xmlns:s="http://jboss.org/seam/faces"-->
+
+
+
+    <style>
+        /*
+        .field.error label {
+             color: #C00;
+         }
+ 
+         .field.valid label {
+             color: #0C0;
+         }
+        
+        #joinEditorform { width: 670px; }
+       
+        #joinEditorform .ui-outputlabel.error {
+            margin-left: 10px;
+            width: auto;
+            display: inline;
+            color: #C00;
+        }
+        * /
+        .field {
+            / *  overflow: hidden;
+               margin-bottom: 10px; * /
+        }
+
+        .field label {
+            color: blue;
+            / *  width: auto;
+              display: inline-block;
+              font-size: 12px; * /
+        }
+
+        .field.error label {
+
+            color: #C00;
+        }
+
+        .field.valid label {
+
+            color: #0C0;
+        }
+
+
+        .error{
+            color: #C00;  
+        }
+        .error1{
+            color: #ccc;  
+        }
+        .valid {
+
+            color: #0C0;
+        }
+        */
+
+        /* Some simple styles to make it more presentable */
+        /*
+              h1 {
+                  font-family: Helvetica, Arial, sans-serif;
+              }
+      
+              label {
+                  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif
+              }
+      
+            
+              form {
+                      width: 500px;
+              }
+        */
+
+
+        /*
+             
+        
+                label small {
+                    display: block;
+                    color: #444;
+                }
+        
+                .field input {
+                    width: 250px;
+                }
+      
+        .field input[type="checkbox"] {
+            width: auto;
+        }
+
+        .checkboxes label {
+            float: left;
+            clear: both;
+        }
+
+        .checkboxes > div {
+            float: left;
+        }
+
+        .checkboxes > label:first-child {
+            margin-left: 0;
+        }
+        */
+        /*
+        .buttons {
+            margin-left: 200px;
+        }
+        */
+    </style> 
+
+    <script>
+        /* 
+         *  $(document).ready(function() {
+         
+         $.validator.setDefaults({
+         submitHandler: function() {
+         alert("submitted!");
+         },
+         showErrors: function(map, list) {
+         // there's probably a way to simplify this
+         var focussed = document.activeElement;
+         if (focussed $(focussed).is("input, textarea")) {
+         $(this.currentForm).tooltip("close", {currentTarget: focussed}, true)
+         }
+         this.currentElements.removeAttr("title").removeClass("ui-state-highlight");
+         $.each(list, function(index, error) {
+         $(error.element).attr("title", error.message).addClass("ui-state-highlight");
+         });
+         if (focussed  $(focussed).is("input, textarea")) {
+         $(this.currentForm).tooltip("open", {target: focussed});
+         }
+         }
+         });
+         
+         $("#joinEditorform").validate({
+         rules: {
+         'joinEditorform:email': {
+         required: true,
+         email: true
+         }
+         },
+         messages: {
+         'joinEditorform:email': "Please enter a valid email address"
+         },
+         errorClass: "error",
+         validClass: "valid",
+         errorElement: "label"
+         });
+         
+         
+         $(PrimeFaces.escapeClientId('joinEditorform:joinEditorButton')).click(function() {
+         
+         return $("#joinEditorform").valid();
+         
+         
+         });
+         
+         
+         * //var  domId = "joinEditorform:joinEditorButton";
+         
+         function triggerBeforeOnClick(domId, code){
+         
+         if(document.getElementById){
+         var commandButton = document.getElementById("joinEditorform:joinEditorButton");
+         var commandButtonOnClick = commandButton.onclick;
+         commandButton.onclick = function(){
+         if(code()){
+         alert('commandButton!');
+         return commandButtonOnClick();
+         }
+         return false;
+         }
+         }
+         }
+         
+         
+         $(document.getElementById('formId:inputId')).rules('add', {
+         required: true
+         , messages: {
+         required: 'error message'
+         }
+         });
+         */
+        /*
+         var formSettings = {
+         singleError: function($field, rules) {
+         
+         $field
+         .closest('.field')
+         .removeClass('valid')
+         .addClass('error');
+         
+         },
+         singleSuccess: function($field, rules) {
+         
+         $field
+         .closest('.field')
+         .removeClass('error')
+         .addClass('valid');
+         
+         },
+         
+         overallSuccess: function() {
+         
+         alert('Everything is OK, submit!');
+         
+         },
+         
+         overallError: function($form, fields) {
+         
+         alert('Errors found');
+         
+         },
+         autoDetect: true,
+         debug: true,
+         // Add in a new RegExp rule
+         regExp: {
+         username: /^[a-zA-Z0-9\-_]*$/
+         }
+         };
+         
+         // validate signup form on keyup and submit
+         var form = $('#joinEditorform');  
+         form.validate({
+         rules: {
+         'joinEditorform:email': {
+         email: true
+         }
+         }
+         });
+         
+         form.validate(formSettings);
+         ,{
+         rules: {
+         
+         'joinEditorform:firstname': "required",
+         
+         'joinEditorform:lastname': "required",
+         'joinEditorform:username': {
+         required: true,
+         minlength: 2
+         },
+         'joinEditorform:password': {
+         required: true,
+         minlength: 5
+         },
+         'joinEditorform:confirmPassword': {
+         required: true,
+         minlength: 5,
+         equalTo: "#password"
+         },
+         
+         
+         'joinEditorform:email': {
+         required: true,
+         email: true
+         }
+         
+         
+         
+         
+         },
+         messages: {
+         'joinEditorform:email': {
+         required: "We need your email address to contact you",
+         email: "Your email address must be in the format of name@domain.com"
+         }
+         }
+         */
+
+        /*,
+         messages: {
+         firstname: "Please enter your firstname",
+         lastname: "Please enter your lastname",
+         username: {
+         required: "Please enter a username",
+         minlength: "Your username must consist of at least 2 characters"
+         },
+         password: {
+         required: "Please provide a password",
+         minlength: "Your password must be at least 5 characters long"
+         },
+         confirm_password: {
+         required: "Please provide a password",
+         minlength: "Your password must be at least 5 characters long",
+         equalTo: "Please enter the same password as above"
+         },
+         email: "Please enter a valid email address",
+         agree: "Please accept our policy"
+         }
+         
+         });
+         */
+        /*
+         function triggerBeforeOnClick() {
+         if ($("#joinEditorform").valid()) {
+         alert("Valid: ");
+         return true;
+         //cannot use regular $("#form").submitt()
+         // really can't figure what to use here
+         }
+         else {
+         return false;
+         }
+         }
+         ;
+         
+         
+         
+         
+         
+         $("#form\\:save").click(function() {
+         if ($("#form").valid()) {
+         //cannot use regular $("#form").submitt()
+         // really can't figure what to use here
+         }
+         else {
+         return false;
+         }
+         
+         });
+         */
+
+
+
+        /*---------------------
+         
+         FORM VALIDATION
+         
+         ---------------------* /
+         
+         var formSettings = {
+         singleError: function($field, rules) {
+         
+         $field
+         .closest('.field')
+         .removeClass('valid')
+         .addClass('error');
+         
+         },
+         singleSuccess: function($field, rules) {
+         
+         $field
+         .closest('.field')
+         .removeClass('error')
+         .addClass('valid');
+         
+         },
+         
+         overallSuccess: function() {
+         
+         alert('Everything is OK, submit!');
+         
+         },
+         
+         overallError: function($form, fields) {
+         
+         alert('Errors found');
+         
+         },
+         autoDetect: true,
+         debug: true,
+         // Add in a new RegExp rule
+         regExp: {
+         username: /^[a-zA-Z0-9\-_]*$/
+         }
+         };
+         
+         var $validate = $('#joinEditorform')
+         .validate(formSettings)
+         .data('validate');
+         */
+        /*---------------------
+         
+         Custom validation
+         
+         
+         
+         $validate.checkMatches = function($field, toMatch) {
+         
+         return $field.val() === $('[name="' + toMatch + '"]').val();
+         
+         }
+         
+         
+         });*/
+
+    </script>
+
+    <!-- validation_index-->
+    <h:outputScript library="custom" name="js/validation_address_index.js" />
+
+    <td class="ui-corner-all" valign="top" style=" vertical-align: top; background-color: #FFF; padding:  0; ; border: #CCC 1px solid; "  height="500" width="1007">
+
+
+
+               <!-- <h:form id="joinEditorform" onsubmit="document.#{p:component('joinEditorform')}.action='create_account';"  enctype="multipart/form-data" > 
+              <form id="form" action=""  method="post" novalidate="novalidate">
+       <form id="joinEditorform" action=""  method="post" novalidate="novalidate">
+   
+        -->
+        <div  align="center" >
+           <!-- <h:form id="joinEditorform" onsubmit="document.#{p:component('joinEditorform')}.action='create_account';"  enctype="multipart/form-data" > -->
+            <h:form id="joinEditorAddressform"  enctype="multipart/form-data" > 
+
+
+                <p:panel style=" vertical-align: top; border-color: whitesmoke; border-width: 2px; padding:  10px;    -moz-border-radius: 3px; -webkit-border-radius: 3px;
+                         border-radius: 3px; width: 610px; height: 520px;" >
+
+                    <p:outputLabel  style=" font-size: 20px; font-weight:bolder" value="Thanks for signing with us. Please take your time to complete the following Step."/>
+                    <div  align="left"  style="padding: 10px; ">
+                    </div>                             
+                    <!--
+                    <div  align="left"  style="padding-top: 30px; padding-left: 10px; ">
+                        <p:outputLabel  style="  font-size: 24px; font-weight:normal" value="Step 2"/>
+                    </div>                        
+                    -->
+                    <h:panelGrid  style="vertical-align: top;  padding: 1px; margin-left: -80px" columns="2">
+                        <h:panelGrid  style="vertical-align: top; padding: 5px; " columns="1">
+                            <p:panel  style=" background-color: white; padding: 0px; vertical-align: top; width: 50px; height: 50px; border-color: #{msg.panelbgcolor}; ">
+                                <div id="joinEditorBusy" style="width: 50px; height: 50px; overflow: hidden;"/>
+                            </p:panel>
+                            <p:panel style=" background-color: white; padding: 0px; vertical-align: top; width: 50px; height: 300px; border-color: #{msg.panelbgcolor}; "/>
+                        </h:panelGrid> 
+
+                        <p:panel id="joinEditorformInnerPanel" header="header" styleClass="joinEditorInnerPanel"  style=" background-color:#{msg.panelbgcolor}; border: solid 1px #333333; text-align: left; padding: 0px; /* width: 330px*/" >
+                            <f:facet name="header" >Registration step 2.</f:facet> 
+                            <h:panelGrid  style=" vertical-align: top; padding: 5px;" columns="2">
+
+                                <h:panelGrid columns="1" >
+                                    <h:panelGrid  columns="1"  >
+
+
+<!-- <p:panel style=" background-color: #{msg.panelbgcolor}; padding: 0px; vertical-align: top; width: 10px; height: 1px; border-color: #{msg.panelbgcolor}; " />
+                                        <p:panel style=" background-color: #{msg.panelbgcolor}; padding: 0px; vertical-align: top; width: 10px; height: 1px; border-color: #{msg.panelbgcolor}; " />
+                                        -->
+
+
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel for="street" style=" font-weight: normal" value="Address :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputText id="street" value="#{userBean.entry_street_address}" size="25" style=" background-color: white ; border: solid 1px #8ab0c6;"  onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"  >
+                                                    <!--<p:ajax update="msgFirstName" event="blur" />-->
+                                                </h:inputText>
+                                            </h:panelGrid>
+                                        </p:column>
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel for="street2" style=" font-weight: normal" value="Address 2 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputText id="street2" value="#{userBean.entry_street_address2}" size="25" style=" background-color: white ; border: solid 1px #8ab0c6;"  onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"  >
+                                                    <!--<p:ajax update="msgFirstName" event="blur" />-->
+                                                </h:inputText>
+                                            </h:panelGrid>
+                                        </p:column>
+
+                                        <p:column >
+                                            <h:panelGrid  columns="2" style="">
+                                                <p:outputLabel for="city" style=" font-weight: normal" value="City :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputText  id="city" value="#{userBean.entry_city}" size="25" style=" background-color: white ; border: solid 1px #8ab0c6;"  onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"   >
+                                                    <!--<p:ajax update="msgLastName" event="blur" />-->
+                                                </h:inputText>
+                                            </h:panelGrid>
+                                        </p:column>
+
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel for="state" style="font-weight: normal" value="State :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputText id="state"  value="#{userBean.entry_state}" size="25" style=" background-color: white; border: solid 1px #8ab0c6;" onchange="$('passwordConfirm').show();" onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"   /> 
+                                            </h:panelGrid>
+                                        </p:column>
+
+
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel for="zip" style="font-weight: normal" value="Zip Code :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputText  id="zip" value="#{userBean.entry_postcode}" size="25" style=" background-color: white; border: solid 1px #8ab0c6;"  onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"  >
+
+                                                    <f:convertNumber type="number" integerOnly="true" maxIntegerDigits="2"/>
+                                                </h:inputText>
+                                            </h:panelGrid>
+                                        </p:column>
+
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel for="country"   style="font-weight: normal" value="Country :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:selectOneMenu  id="country" style="  width: 182px;"  value="#{userBean.selectedCountry}" 
+                                                                  converter="omnifaces.SelectItemsConverter"    >
+                                                    <f:selectItems  value="#{countries}" var="v_country"  itemLabel="#{v_country.country_name}" />
+                                                </h:selectOneMenu>
+
+                                                <!--
+ 
+ 
+         <h:selectOneMenu  id="country" style="  width: 216px;"  value="#{userBean.usersGender}" >
+                                                     <f:selectItem  noSelectionOption=" " />
+                                                     <f:selectItem  itemLabel="#{msg.male}" itemValue="Mmmmm"/>
+                                                     <f:selectItem  itemLabel="#{msg.female}" itemValue="F" />
+                                                 </h:selectOneMenu>
+ 
+     <h:selectOneMenu  id="country" style="  width: 182px;"  value="#{userBean.usersGender}" 
+                                                                  >
+                                                     <f:selectItems  value="#{userBean.countries}" var="country"
+                                                                     itemValue="#{country}" itemLabel="#{country.country_name}" />
+                                                     <o:converter binding="#{countryConverter}" />
+                                                 </h:selectOneMenu>                                             
+                                                -->
+                                            </h:panelGrid>
+                                        </p:column>
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel for="fax" style="font-weight: normal" value="Fax Number :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputText  id="fax" value="#{userBean.entry_fax}" size="25" style=" background-color: white; border: solid 1px #8ab0c6;"  onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"  >
+                                                </h:inputText>
+                                            </h:panelGrid>
+                                        </p:column>
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel for="url" style="font-weight: normal" value="Web site :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputText  id="url" value="#{userBean.entry_url}" size="25" style=" background-color: white; border: solid 1px #8ab0c6;"  onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"   >
+                                                </h:inputText>
+                                            </h:panelGrid>
+                                        </p:column>
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel for="phoneDefault" style="font-weight: normal" value="Phone 1 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputText  id="phoneDefault" value="#{userBean.entry_phone_default}" size="25" style=" background-color: white; border: solid 1px #8ab0c6;"  onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"   >
+                                                </h:inputText>
+                                            </h:panelGrid>
+                                        </p:column>
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel for="phone2" style="font-weight: normal" value="Phone 2 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                                <h:inputText  id="phone2" value="#{userBean.entry_phone2}" size="25" style=" background-color: white; border: solid 1px #8ab0c6;"  onmouseover="$(this).addClass('inputOnmouseOver');"  onmouseout="$(this).removeClass('inputOnmouseOver');"  >
+                                                </h:inputText>
+                                            </h:panelGrid>
+                                        </p:column>
+
+
+                                        <p:column >
+                                            <div class="field buttons" align="right" >
+                                                <h:panelGrid  columns="1"  style=" padding: 10px" >
+                                                    <p:commandButton id="joinEditorAddressButton"  action="#{userBean.createUserAddress()}"  style="font-weight: normal; border: solid 1px #8ab0c6;"  value="Continue"  >
+                                                        <!-- <f:param name="createProfile}" value="createProfile" />
+                                                         <f:param  id="emailParam" name="newUserEmail"  />
+                                                       
+                                                          <f:ajax execute="@form" render="@form" /> 
+                                                        -->
+
+                                                    </p:commandButton>
+                                                </h:panelGrid>
+                                            </div>
+                                        </p:column>
+
+                                        <p:column >
+                                            <h:panelGrid  columns="2" >
+                                                <p:outputLabel  style="font-weight: normal" value=""/>
+                                                <p:outputLabel   style="font-weight: normal" value=""/> 
+                                            </h:panelGrid>
+                                        </p:column>
+
+
+
+
+
+                                    </h:panelGrid>
+
+
+                                </h:panelGrid>
+                            </h:panelGrid>
+                        </p:panel>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>  
+        </div>
+
+    </td>
+</ui:composition>
