@@ -1,0 +1,60 @@
+https://netdevplus.wordpress.com/2014/01/29/durandal-with-asp-net-4-5-1-part-4-authorization/
+http://www.regexplanet.com/advanced/java/index.html
+http://www.w3schools.com/tags/ref_pxtoemconversion.asp
+http://pxtoem.com/
+http://www.visibone.com/colorlab/big.html
+http://colorbrewer2.org/
+https://github.com/CraigCav/ko.datasource
+http://jscompress.com/
+https://developers.google.com/closure/compiler/docs/gettingstarted_app
+http://convertico.com/favicon-generator/
+
+To convert a String to a Long (object), use Long.valueOf(String s).longValue();
+Long.valueOf(s).longValue();
+
+
+https://github.com/datanucleus/samples-jdo/blob/master/tutorial/pom.xml
+
+E: 
+cd E:\Documents and Settings\hope\NetBeansProjects\tuShopWar-parent\tuShopWar-assembly\target
+java -javaagent:E:/Docume~1/hope/NetBeansProjects/tuShopWar-parent/tuShopWar-assembly/zorka-1.0.15/zorka.jar -Xbootclasspath/p:C:/Docume~1/hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/8.1.5.v20150921/alpn-boot-8.1.5.v20150921.jar -jar tuShopWar-assembly-1.0-SNAPSHOT.war next
+
+
+E: 
+cd E:\Documents and Settings\hope\NetBeansProjects\tuShopWar-parent\tuShopWar-assembly\target
+java -javaagent:E:/Docume~1/hope/NetBeansProjects/tuShopWar-parent/tuShopWar-assembly/zorka-1.0.15/zorka.jar=E:/Docume~1/hope/NetBeansProjects/tuShopWar-parent/tuShopWar-assembly/zorka-1.0.15 -Xbootclasspath/p:C:/Docume~1/hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/8.1.5.v20150921/alpn-boot-8.1.5.v20150921.jar -jar tuShopWar-assembly-1.0-SNAPSHOT.war next
+
+
+E: 
+cd E:\Documents and Settings\hope\NetBeansProjects\tuShopWar-parent\tuShopWar-assembly\target
+java -Xbootclasspath/p:C:/Docume~1/hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/8.1.5.v20150921/alpn-boot-8.1.5.v20150921.jar -jar tuShopWar-assembly-1.0-SNAPSHOT.war 
+
+E: 
+cd E:\Documents and Settings\hope\NetBeansProjects\tuShopWar-parent\tuShopWar-assembly\target
+java -Xms32m -Xmx512m -Xbootclasspath/p:C:/Docume~1/hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/8.1.5.v20150921/alpn-boot-8.1.5.v20150921.jar -version:"1.8.0_60" -jar tuShopWar-assembly-1.0-SNAPSHOT.war next
+
+
+E: 
+cd E:\Documents and Settings\hope\NetBeansProjects\tuShopWar-parent\tuShopWar-assembly\target
+java -Xbootclasspath/p:C:/Docume~1/hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/8.1.5.v20150921/alpn-boot-8.1.5.v20150921.jar -jar tuShopWar-assembly-1.0-SNAPSHOT.war 
+
+
+E: 
+cd E:\Documents and Settings\hope\NetBeansProjects\tuShopWar-parent\tuShopWar-assembly\target
+java -Xms32m -Xmx512m -Xbootclasspath/p:C:/Docume~1/hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/8.1.5.v20150921/alpn-boot-8.1.5.v20150921.jar -version:"1.8.0_60" -jar tuShopWar-assembly-1.0-SNAPSHOT.war next
+
+E: 
+cd E:\Users\Hope\Documents\NetBeansProjects\tuShopWar-parent\tuShopWar-assembly\target
+java -Xms1024m -Xmx1024m -Xbootclasspath/p:C:/Users/Hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/8.1.11.v20170118/alpn-boot-8.1.11.v20170118.jar  -version:"1.8.0_121" -jar tublex-1.0-SNAPSHOT.war next
+
+E: 
+cd E:\Users\Hope\Documents\NetBeansProjects\tublex\target
+java -Xms1024m -Xmx1024m -Xbootclasspath/p:C:/Users/Hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/8.1.11.v20170118/alpn-boot-8.1.11.v20170118.jar  -version:"1.8.0_121" -jar tublex-1.0-SNAPSHOT.war next
+
+E: 
+cd E:\Users\Hope\Documents\NetBeansProjects\tuShopWar-parent\tuShopWar-assembly\target
+java -Xms1024m -Xmx1024m -Xbootclasspath/p:C:/Users/Hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/8.1.11.v20170118/alpn-boot-8.1.11.v20170118.jar  -version:"1.8.0_121" -jar tuShopWar-assembly-1.0-SNAPSHOT.war next
+
+E: 
+cd E:\Users\Hope\Documents\NetBeansProjects\tublex\target
+java -Xms1024m -Xmx1024m -Xbootclasspath/p:C:/Users/Hope/.m2/repository/org/mortbay/jetty/alpn/alpn-boot/8.1.11.v20170118/alpn-boot-8.1.11.v20170118.jar  -version:"1.8.0_121" -jar tublex.war next

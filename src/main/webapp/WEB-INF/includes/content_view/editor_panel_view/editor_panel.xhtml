@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" 
+    [<!ENTITY nbsp "&#160;">]>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+                xmlns:cc="http://java.sun.com/jsf/composite">
+
+
+    
+    <div >
+        <td  class="ui-corner-all" style="background: #999999; vertical-align: top; border: solid 3px #999999; padding: 10px;    "  height="500" width="530" >
+
+               <h:form id="userphotoform" enctype="multipart/form-data" > 
+                <!--    <p:panel style=" vertical-align: top; border-color: whitesmoke; border-width: 2px; padding-left: 5px; padding-right:  5px;   -moz-border-radius: 3px; -webkit-border-radius: 3px;
+                             border-radius: 3px; width: 528px; height: 295px;" >
+-->
+
+                        <p:panel header="header" style=" background-color:#CCCCCC/*#{msg.panelbgcolor}*/; border: solid 2px #333333;  padding: 0px;  vertical-align: top; -moz-border-radius: 3px; -webkit-border-radius: 3px;
+                                 border-radius: 3px; width: 525px; height: 290px;" >
+                            <f:facet name="header" >User Photo Editor</f:facet> 
+                            <h:panelGrid  style=" vertical-align: top; padding: 5px; " columns="2">
+
+                                <p:column style=" vertical-align: top;   ">
+
+                                    <!-- conditional display, based on image height and width. -->
+                                    <p:panel rendered="#{imageHieght gt imageWidth}" 
+                                             style=" border: solid 1px #333333; vertical-align: central; text-align: center; width: 160px; height: 200px; " >
+                                        <div id="userphotoDIV" ><img id="userphoto"  src="#{userphotoImg}" alt="userphoto" height="200px" /></div>
+                                    </p:panel>
+                                    <p:panel rendered="#{(imageHieght lt imageWidth) or
+                                                         (imageHieght == imageWidth)}"
+                                             style="border: solid 1px #333333; vertical-align: central; text-align: center; width: 160px; height: 200px; " >
+                                        <div id="userphotoDIV" ><img id="userphoto"   src="#{userphotoImg}" alt="userphoto" width="160px" /></div>
+                                    </p:panel>
+
+                                </p:column>
+
+                                <p:column >
+                                    <h:panelGrid columns="1" >
+                                        <p:column>
+                                            <h:panelGrid columns="4" >
+                                                <p:column>
+                                                    <p:panel style=" background-color: #CCCCCC/*#{msg.panelbgcolor}*/; vertical-align: top; width: 20px; height: 100px; border-color: #CCCCCC/*#{msg.panelbgcolor}*/; border-width: 0px" />
+                                                </p:column>
+                                                <p:column>
+                                                    <h:panelGrid columns="1" style=" padding: 0px">
+                                                        <p:panel style="border: solid 1px #333333; vertical-align: top; width: 80px; height: 80px; " >
+                                                            <div id="userphotoPreview2" style="width: 80px; height: 80px; overflow: hidden;">
+                                                                <img src="#{userphotoImg}" height="100px" />
+                                                            </div>
+                                                        </p:panel>
+                                                        <p:panel  style=" background-color: #CCCCCC/*#{msg.panelbgcolor}*/;  vertical-align: top; width: 80px; height: 6px; border-color: #CCCCCC/*#{msg.panelbgcolor}*/; border-width: 2px" />
+
+                                                    </h:panelGrid>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:panel style=" background-color: #CCCCCC/*#{msg.panelbgcolor}*/;  vertical-align: top; width: 100px; height: 100px; border-color:#A8A8A8 /*#{msg.panelbgcolor}*/; border-width: 2px" >
+                                                        <div id="userphotoPreviewBusy" style="width: 100px; height: 100px; overflow: hidden;">
+
+                                                        </div>
+                                                    </p:panel>
+                                                </p:column>
+                                                <p:column>
+                                                    <!-- conditional display, based on image height and width. -->
+                                                    <p:panel  rendered="#{imageHieght gt imageWidth}" 
+                                                              style="border: solid 1px #333333; vertical-align: central; text-align: center; width: 80px; height: 100px; overflow: hidden;" >
+                                                        <div id="userphotoPreview" style="width: 80px; height: 100px; overflow: hidden;">
+                                                            <img src="#{userphotoImg}" height="100px" />
+                                                        </div>
+                                                    </p:panel> 
+                                                    <p:panel  rendered="#{(imageHieght lt imageWidth) or
+                                                                          (imageHieght == imageWidth)}"
+                                                              style="border: solid 1px #333333; vertical-align: central; text-align: center; width: 80px; height: 100px; overflow: hidden;" >
+                                                        <div id="userphotoPreview" style="width: 80px; height: 100px; overflow: hidden;">
+                                                            <img src="#{userphotoImg}" width="80px" />
+                                                        </div>
+                                                    </p:panel> 
+                                                </p:column>
+                                            </h:panelGrid>
+
+                                            <p:panel style="background-color: #CCCCCC; border: solid 1px #333333; width: 325px; height: 80px;" >
+                                                <div class="upload-form" id="uploader" style="" >
+                                                    <p:panel style="border: solid 1px #CCCCCC;  vertical-align: bottom ; width:  317px; height: 73px;" >
+                                                        <p:panel style="border: none; vertical-align: bottom;  width: 300px; height:  33px;">
+                                                        <!-- File List -->
+                                                        <div id="filelist" class="filelistclass"></div>
+                                                        <!-- Progress Bar -->
+                                                        <div id="progressbar"></div>
+                                                        <div id="success" class="success">Successfully loaded.</div>
+                                                       
+                                                        </p:panel>
+                                                    <p:panel style="vertical-align: bottom; background-color: #{msg.panelbgcolor}; padding: 0px;  width: 315px; height: 35px;" >
+                                                        <!-- Select & Upload Button -->
+                                                        <div>
+                                                            <h:panelGrid columns="3">
+                                                                <p:panel style="background-color: #{msg.panelbgcolor}; padding: 0px; vertical-align: top; width: 115px; height: 28px; border-color: #{msg.panelbgcolor}; border-width: 2px" >
+                                                                    <p:button id="pickfiles"  value="Browse" href="#"/>  
+                                                                </p:panel>
+                                                                <p:panel style=" background-color: #{msg.panelbgcolor}; padding: 0px; vertical-align: top; width: 108px; height: 28px; border-color: #{msg.panelbgcolor}; border-width: 2px" >
+                                                                    <p:button id="uploadfiles"   value="Upload" href="#" />                                                         
+                                                                </p:panel>
+                                                                <p:panel style=" background-color: #{msg.panelbgcolor}; padding: 0px; vertical-align: top; width: 66px; height: 28px; border-color: #{msg.panelbgcolor}; border-width: 2px" >
+                                                                    <p:button id="savefiles"  value="Save" href="#" />
+                                                                </p:panel> 
+                                                            </h:panelGrid>
+                                                            <input type="hidden"  id="x1" value="-"/>
+                                                            <input type="hidden"  id="x2" value="-"/>
+                                                            <input type="hidden"  id="y1" value="-"/>
+                                                            <input type="hidden"  id="y2" value="-"/>
+                                                            <input type="hidden"  id="scaledImgWidth" value="-"/>
+                                                            <input type="hidden"  id="scaledImgHeight" value="-"/>
+                                                            <input type="hidden"  id="outSizeWidth" value="-"/>
+                                                            <input type="hidden"  id="outSizeHeight" value="-"/>
+                                                        </div>    
+                                                    </p:panel>
+                                                      
+                                                    </p:panel>
+                                                    <!-- Form Heading 
+                                                    <h1 class="replace-text">Upload Form</h1>
+                                                    <a href="#" class="close" title="Close Window"><img src="img/close-button.png" alt="Close"/></a>
+                                                    -->
+                                                    
+                                                </div>
+                                            </p:panel>
+                                        </p:column>
+                                    </h:panelGrid>
+                                </p:column> 
+                            </h:panelGrid>
+                        </p:panel>
+                   <!-- </p:panel>-->
+                </h:form> 
+
+        </td>
+    </div>
+</ui:composition>
