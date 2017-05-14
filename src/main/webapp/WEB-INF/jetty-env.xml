@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+<Configure id="webAppCtx" class="org.eclipse.jetty.webapp.WebAppContext">
+   
+     <Set name="virtualHosts">
+        <Array type="java.lang.String">
+            <Item>192.168.0.3</Item>
+            <Item>tublex.com</Item>
+            <Item>www.tublex.com</Item>
+            <Item>tushop.tublex.com</Item>
+            <Item>www.tushop.tublex.com</Item>
+            <Item>tucontact.tublex.com</Item>
+            <Item>www.tucontact.tublex.com</Item>
+        </Array>
+    </Set>
+    
+    <!-- ==4== CDI -->
+    <New id="BeanManager" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>
+            <Ref id="webAppCtx"/>
+        </Arg>
+        <Arg>BeanManager</Arg>
+        <Arg>
+            <New class="javax.naming.Reference">
+                <Arg>javax.enterprise.inject.spi.BeanManager</Arg>
+                <Arg>org.jboss.weld.resources.ManagerObjectFactory</Arg>
+                <Arg/>
+            </New>
+        </Arg>
+    </New>
+    
+    <Get class="java.lang.System" name="out">
+        <Call name="println">
+            <Arg>**** BeanManager loaded ****</Arg>
+        </Call>
+    </Get>
+    
+    
+    
+    <Set name="serverClasses">
+        <Array type="java.lang.String">
+            <Item>-org.eclipse.jetty.servlet.ServletContextHandler.Decorator</Item>
+        </Array>
+    </Set>
+    <Get class="java.lang.System" name="out">
+        <Call name="println">
+            <Arg>**** serverClasses loaded ****</Arg>
+        </Call>
+    </Get>
+    
+<<<<<<< HEAD
+
+ <!-- ==5== UserTransaction -->
+   
+    <New id="mydatasource" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/pooledDataSourceBTM</Arg>
+        <Arg>
+            <New class="bitronix.tm.resource.jdbc.PoolingDataSource">
+                <Set name="className">com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</Set>
+                <Set name="uniqueName">pooledDataSourceBTM</Set>
+                <Set name="minPoolSize">2</Set>
+                <Set name="maxPoolSize">5</Set>
+                <Set name="acquireIncrement">1</Set>
+                <Set name="allowLocalTransactions">false</Set>
+                <!--  <Set name="useTmJoin">true</Set>
+<Set name="deferConnectionRelease">true</Set> - ->
+                <Set name="testQuery">set autocommit=1</Set> -->
+                <Set name="testQuery">set autocommit=1</Set>
+                <Get name="driverProperties">
+                    <Put name="url">jdbc:mysql://localhost:3306/jpaidentitydb?zeroDateTimeBehavior=convertToNull</Put>
+                    <Put name="user">hope</Put>
+                    <Put name="password">risingp&amp;s</Put>   
+                </Get>
+                <Call name="init" />
+            </New>
+        </Arg>
+    </New>
+    <Get class="java.lang.System" name="out">
+        <Call name="println">
+            <Arg>**** mydatasource loaded ****</Arg>
+        </Call>
+    </Get>
+  
+    
+    
+    
+    <!-- Transaction -->
+    <Call name="getConfiguration" class="bitronix.tm.TransactionManagerServices">
+        <Set name="serverId">jetty-btm-node0</Set>
+        <Set name="defaultTransactionTimeout">200000</Set> 
+        <Set name="logPart1Filename">
+            <SystemProperty name="jetty.home" default="." />/btm1.tlog</Set>
+        <Set name="logPart2Filename">
+            <SystemProperty name="jetty.home" default="." />/btm2.tlog</Set>
+    
+        <!-- <Set name="gracefulShutdownInterval">30</Set> -->
+    </Call>
+ 
+ 
+    <New class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>TransactionManager</Arg>
+        <Arg>
+            <Call name="getTransactionManager" class="bitronix.tm.TransactionManagerServices" />
+        </Arg>
+    </New>
+   
+    <New id="tx"  class="org.eclipse.jetty.plus.jndi.Transaction">
+        <Arg>
+            <Call name="getTransactionManager" class="bitronix.tm.TransactionManagerServices" />
+        </Arg>
+    </New>
+    <Get class="java.lang.System" name="out">
+        <Call name="println">
+            <Arg>**** TransactionManager loaded ****</Arg>
+        </Call>
+    </Get>
+    
+
+    
+</Configure>
+
+=======
+    
+</Configure>
+>>>>>>> origin/master

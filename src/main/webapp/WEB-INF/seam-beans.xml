@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:s="urn:java:ee" xmlns:drools="urn:java:org.jboss.seam.drools:org.jboss.seam.drools.config"
+xmlns:auth="urn:java:org.jboss.seam.security" 
+       xmlns:security="urn:java:org.jboss.seam.security.permission"
+xmlns:plidm="urn:java:org.jboss.seam.security.management.picketlink"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://jboss.org/schema/cdi/beans_1_0.xsd">
+   
+    <interceptors>
+        <class>org.jboss.seam.security.SecurityInterceptor</class>
+    </interceptors>
+    
+    
+    <!--
+    <auth:Identity>
+          <s:modifies/>
+          <auth:authenticatorName>myAuthenticator</auth:authenticatorName>
+     </auth:Identity>
+     
+      
+      <plidm:JpaIdentityStoreConfiguration>
+        <s:replaces/>
+        <plidm:identityClass>com.hopecee.proshopnew.jpa.model.IdentityObject</plidm:identityClass>
+        <plidm:credentialClass>com.hopecee.proshopnew.jpa.model.IdentityObjectCredential</plidm:credentialClass>
+        <plidm:relationshipClass>com.hopecee.proshopnew.jpa.model.IdentityObjectRelationship</plidm:relationshipClass>
+        <plidm:roleTypeClass>com.hopecee.proshopnew.jpa.model.IdentityRoleName</plidm:roleTypeClass>
+        <plidm:attributeClass>com.hopecee.proshopnew.jpa.model.IdentityObjectAttribute</plidm:attributeClass>
+    </plidm:JpaIdentityStoreConfiguration>
+    -->
+    <!--
+    
+     <auth:Identity>
+          <s:modifies/>
+          <auth:authenticatorName>myAuthenticator</auth:authenticatorName>
+     </auth:Identity>
+     
+    
+    
+    
+     
+     
+     
+    
+    
+     <security:JpaPermissionStore>
+      <s:replaces/>      
+      <security:identityPermissionClass>org.jboss.seam.security.examples.idmconsole.model.IdentityPermission</security:identityPermissionClass>
+   </security:JpaPermissionStore>  
+   
+   <plidm:JpaIdentityStoreConfiguration>
+        <s:replaces/>
+        <plidm:identityClass>com.hopecee.proshopnew.jpa.model.IdentityObject</plidm:identityClass>
+        <plidm:credentialClass>com.hopecee.proshopnew.jpa.model.IdentityObjectCredential</plidm:credentialClass>
+        <plidm:relationshipClass>com.hopecee.proshopnew.jpa.model.IdentityObjectRelationship</plidm:relationshipClass>
+        <plidm:roleTypeClass>com.hopecee.proshopnew.jpa.model.IdentityRoleName</plidm:roleTypeClass>
+        <plidm:attributeClass>com.hopecee.proshopnew.jpa.model.IdentityObjectAttribute</plidm:attributeClass>
+    </plidm:JpaIdentityStoreConfiguration>
+  -->
+
+    
+    
+    <!--
+    
+    <!- -
+    <security:Identity>
+        <s:modifies/>
+        <security:authenticatorClass>org.jboss.seam.security.management.IdmAuthenticator</security:authenticatorClass>
+    </security:Identity>
+    
+    
+    
+   
+    <security:Identity>
+        <s:modifies/>
+        <security:authenticatorClass>org.jboss.seam.security.management.IdmAuthenticator</security:authenticatorClass>
+    </security:Identity>
+    -->
+</beans>
